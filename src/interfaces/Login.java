@@ -89,7 +89,8 @@ public class Login extends JFrame {
 		add(painelFormulario, BorderLayout.CENTER);
 		
 		painelBotoes = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		botao = GUI.botaoAzul(new JButton("Entrar"));
+		botao = GUI.botaoVerde(new JButton("Entrar"));
+		botao.setIcon(GUI.icone("login"));
 		
 		String [] idiomas = {"Português", "Inglês", "Espanhol"};
 		idioma = GUI.textoPadrao(new JComboBox(idiomas));

@@ -3,6 +3,8 @@ package interfaces;
 import java.awt.Color;
 
 import javax.swing.BorderFactory;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -12,8 +14,16 @@ import javax.swing.border.Border;
 
 public class GUI {
 	
+	// Bordas
 	public final static Border BORDA = BorderFactory.createLineBorder(new Color(0x999999), 1);
 	public final static Border BORDA_VAZIA = BorderFactory.createEmptyBorder(10,10,10,10);
+	public final static Border BORDA_BAIXO = BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(0x999999));
+	
+	// Icones
+	public static Icon icone(String nome){
+		Icon icone =  new ImageIcon(GUI.class.getResource("/icons/" + nome + ".png"));
+		return icone;
+	}
 	
 	/* 
 	 * --------------------------------------------------------
