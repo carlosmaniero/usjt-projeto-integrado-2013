@@ -3,7 +3,6 @@ package interfaces;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
@@ -38,7 +37,7 @@ public class Login extends JFrame {
 	public Login(){
 		configurar();
 		criarElementos();
-		setSize(400, 220);
+		setSize(400, 220); // Bug bizarro
 	}
 	
 	private void configurar(){
@@ -76,8 +75,8 @@ public class Login extends JFrame {
 		painelUsuario.setBorder(BorderFactory.createEmptyBorder(0,0,5,0));
 		painelSenha.setBorder(BorderFactory.createEmptyBorder(5,0,0,0));
 		
-		campoUsuario = new JTextField(20);
-		campoSenha = new JPasswordField(20);
+		campoUsuario = GUI.textoPadrao(new JTextField(20));
+		campoSenha = GUI.textoPadrao(new JPasswordField(20));
 		
 		painelUsuario.add(rotuloUsuario, BorderLayout.WEST);
 		painelUsuario.add(campoUsuario, BorderLayout.EAST);
@@ -90,10 +89,10 @@ public class Login extends JFrame {
 		add(painelFormulario, BorderLayout.CENTER);
 		
 		painelBotoes = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		botao = new JButton("Entrar");
+		botao = GUI.botaoAzul(new JButton("Entrar"));
 		
 		String [] idiomas = {"Português", "Inglês", "Espanhol"};
-		idioma = new JComboBox(idiomas);
+		idioma = GUI.textoPadrao(new JComboBox(idiomas));
 		
 		painelBotoes.add(idioma);
 		painelBotoes.add(botao);
