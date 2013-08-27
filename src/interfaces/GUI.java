@@ -17,7 +17,15 @@ public class GUI {
 	// Bordas
 	public final static Border BORDA = BorderFactory.createLineBorder(new Color(0x999999), 1);
 	public final static Border BORDA_VAZIA = BorderFactory.createEmptyBorder(10,10,10,10);
+	public final static Border BORDA_VAZIA_TOP = BorderFactory.createEmptyBorder(10,0,0,0);
+	public final static Border BORDA_VAZIA_DIREITA = BorderFactory.createEmptyBorder(0,0,0,10);
+	public final static Border BORDA_VAZIA_BAIXO = BorderFactory.createEmptyBorder(0,0,10,0);
+	public final static Border BORDA_VAZIA_ESQUERDA = BorderFactory.createEmptyBorder(0,10,0,0);
+	
 	public final static Border BORDA_BAIXO = BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(0x999999));
+	public final static Border BORDA_ESQUERDA = BorderFactory.createMatteBorder(0, 1, 0, 0, new Color(0x999999));
+	public final static Border BORDA_TOPO = BorderFactory.createMatteBorder(1, 0, 0, 0, new Color(0x999999));
+	public final static Border BORDA_DIREITA = BorderFactory.createMatteBorder(0, 0, 0, 1, new Color(0x999999));
 	
 	// Icones
 	public static Icon icone(String nome){
