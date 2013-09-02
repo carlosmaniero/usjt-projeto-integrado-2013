@@ -2,6 +2,8 @@ import interfaces.Administracao;
 import interfaces.CompraPassagem;
 import interfaces.Inicial;
 import interfaces.Login;
+import interfaces.Cancelamento;
+import interfaces.Check;
 
 public class Main {
 
@@ -10,6 +12,8 @@ public class Main {
 		new Login();
 		new Administracao();
 		new CompraPassagem();
+      new Check();
+      new Cancelamento();
 	}
 
 }
