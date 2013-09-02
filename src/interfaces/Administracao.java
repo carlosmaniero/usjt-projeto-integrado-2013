@@ -31,9 +31,7 @@ public class Administracao extends JFrame {
 	
 	private void criarElementos(){
 		cadastrarVoo = GUI.botaoAzul(new JButton("Cadastrar"));
-		cadastrarVoo.setIcon(GUI.icone("mais"));
 		consultarVoo = GUI.botaoAzul(new JButton("Consultar"));
-		consultarVoo.setIcon(GUI.icone("busca"));
 		
 		painelVoos = new JPanel(new GridLayout(1,2,5,10));
 		painelVoos.setBorder(BorderFactory.createTitledBorder(GUI.BORDA_VAZIA, "Voos"));
@@ -42,9 +40,7 @@ public class Administracao extends JFrame {
 		painelVoos.add(consultarVoo);
 		
 		cadastrarAeronave = GUI.botaoAzul(new JButton("Cadastrar"));
-		cadastrarAeronave.setIcon(GUI.icone("mais"));
 		consultarAeronave = GUI.botaoAzul(new JButton("Consultar"));
-		consultarAeronave.setIcon(GUI.icone("busca"));
 		
 		painelAeronave = new JPanel(new GridLayout(1,2,5,10));
 		painelAeronave.setBorder(BorderFactory.createTitledBorder(GUI.BORDA_VAZIA, "Voos"));
