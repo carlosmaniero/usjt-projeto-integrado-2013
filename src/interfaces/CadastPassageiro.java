@@ -15,7 +15,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class InfoPassageiro extends JFrame {
+public class CadastPassageiro extends JFrame {
 
    private BorderLayout layout;
    private JLabel titulo;
@@ -30,18 +30,14 @@ public class InfoPassageiro extends JFrame {
 	
    /*
    private JLabel campoCod;
-	private JLabel campoTrat;
 	private JLabel campoNome;
-	private JLabel campoTipo;
 	private JLabel campoNasc;
 	private JLabel campoEmail;
 	private JLabel campoCel;
    */
    
    private JTextField campoCod;
-   private JTextField campoTrat;
    private JTextField campoNome;
-   private JTextField campoTipo;
    private JTextField campoNasc;
    private JTextField campoEmail;
    private JTextField campoCel;
@@ -59,9 +55,13 @@ public class InfoPassageiro extends JFrame {
    private JPanel painelFormulario;
    private JPanel painelBotoes;
 	
-   private JButton botao;
+   private JButton botaoOK;
+   private JButton botaoCancel;	
 	
-   public InfoPassageiro(){
+	private JComboBox tipoPass;
+	private JComboBox tipoTrat;
+		
+   public CadastPassageiro(){
       configurar();
       criarElementos();
       setSize(400, 420);
@@ -79,7 +79,7 @@ public class InfoPassageiro extends JFrame {
       painelTitulo = new JPanel();
       painelTitulo.setBorder(BorderFactory.createMatteBorder(0,0,2,0,Color.BLACK));
       painelTitulo.setBackground(new Color(0x333333));
-      titulo = new JLabel("Informações do passageiro selecionado");
+      titulo = new JLabel("Cadastrar novo Passageiro");
       painelTitulo.add(titulo);
    	
       titulo.setBorder(BorderFactory.createEmptyBorder(10,40,10,40));
@@ -90,6 +90,8 @@ public class InfoPassageiro extends JFrame {
       painelFormulario			= new JPanel(new GridLayout(7,1));
      
       painelCod 	= new JPanel(new BorderLayout());
+		
+      painelCod 	= new JPanel(new BorderLayout());
       painelTrat 	= new JPanel(new BorderLayout());
       painelNome 	= new JPanel(new BorderLayout());
       painelTipo 	= new JPanel(new BorderLayout());
@@ -99,7 +101,7 @@ public class InfoPassageiro extends JFrame {
    	
       painelFormulario.setBorder(BorderFactory.createEmptyBorder(10,10,0,10));
    	
-      rotuloCod = new JLabel("Código:");
+      rotuloCod = new JLabel("C�digo:");
       rotuloTrat = new JLabel("Tipo de tratamento:");
       rotuloNome = new JLabel("Nome completo:");
       rotuloTipo = new JLabel("Tipo de passageiro:");
@@ -107,23 +109,11 @@ public class InfoPassageiro extends JFrame {
       rotuloEmail = new JLabel("Email:");
       rotuloCel = new JLabel("Tel. celular:");
       
-   	/*
-      campoCod = new JLabel("Código:");
-   	campoTrat = new JLabel("Tipo de Tratamento:");
-   	campoNome = new JLabel("Nome completo:");
-   	campoTipo = new JLabel("Tipo de Passageiro:");
-   	campoNasc = new JLabel("Data de Nascimento:");
-   	campoEmail = new JLabel("Email:");
-      campoCel = new JLabel("Tel. Celular:");
-      */
-      
-      campoCod = GUI.textoPadrao(new JTextField("201212",20));;
-      campoTrat = GUI.textoPadrao(new JTextField("Sr.",20));;
-      campoNome = GUI.textoPadrao(new JTextField("Aristoteles",20));;
-      campoTipo = GUI.textoPadrao(new JTextField("Nenem",20));;
-      campoNasc = GUI.textoPadrao(new JTextField("32/13/2014",20));;
-      campoEmail = GUI.textoPadrao(new JTextField("mewre@xxx.com",20));;
-      campoCel = GUI.textoPadrao(new JTextField("(11) 99875-9874",20));;
+      campoCod = GUI.textoPadrao(new JTextField(" ",20));;
+      campoNome = GUI.textoPadrao(new JTextField(" ",20));;
+      campoNasc = GUI.textoPadrao(new JTextField(" ",20));;
+      campoEmail = GUI.textoPadrao(new JTextField(" ",20));;
+      campoCel = GUI.textoPadrao(new JTextField(" ",20));;
       
       rotuloCod.setHorizontalAlignment(SwingConstants.RIGHT);
       rotuloTrat.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -133,25 +123,25 @@ public class InfoPassageiro extends JFrame {
       rotuloEmail.setHorizontalAlignment(SwingConstants.RIGHT);
       rotuloCel.setHorizontalAlignment(SwingConstants.RIGHT);
       
+  		String [] sTipoPass = {"Crian�a","Adulto","Idoso"};
+		tipoPass = GUI.textoPadrao(new JComboBox(sTipoPass));
+		
+		String [] sTipoTrat = {"Sr.","Sra."};
+ 		tipoTrat = GUI.textoPadrao(new JComboBox(sTipoTrat));  
+	    
+		
       campoCod.setHorizontalAlignment(SwingConstants.LEFT);
-      campoCod.setEditable(false);
-      campoTrat.setHorizontalAlignment(SwingConstants.LEFT);
-      campoTrat.setEditable(false);
       campoNome.setHorizontalAlignment(SwingConstants.LEFT);
-      campoNome.setEditable(false);
-      campoTipo.setHorizontalAlignment(SwingConstants.LEFT);
-      campoTipo.setEditable(false);
       campoNasc.setHorizontalAlignment(SwingConstants.LEFT);
-      campoNasc.setEditable(false);
       campoEmail.setHorizontalAlignment(SwingConstants.LEFT);
-      campoEmail.setEditable(false);
       campoCel.setHorizontalAlignment(SwingConstants.LEFT);
-      campoCel.setEditable(false);
+	
+				
    
       painelCod.setBorder(BorderFactory.createEmptyBorder(0,0,5,0));
-      painelTrat.setBorder(BorderFactory.createEmptyBorder(0,0,5,0));
+      painelTrat.setBorder(BorderFactory.createEmptyBorder(0,0,5,169));
       painelNome.setBorder(BorderFactory.createEmptyBorder(0,0,5,0));
-      painelTipo.setBorder(BorderFactory.createEmptyBorder(0,0,5,0));
+      painelTipo.setBorder(BorderFactory.createEmptyBorder(0,0,5,148));
       painelNasc.setBorder(BorderFactory.createEmptyBorder(0,0,5,0));
       painelEmail.setBorder(BorderFactory.createEmptyBorder(0,0,5,0));
       painelCel.setBorder(BorderFactory.createEmptyBorder(0,0,5,0));
@@ -159,11 +149,11 @@ public class InfoPassageiro extends JFrame {
       painelCod.add(rotuloCod, BorderLayout.WEST);
       painelCod.add(campoCod, BorderLayout.EAST);
       painelTrat.add(rotuloTrat, BorderLayout.WEST);
-      painelTrat.add(campoTrat, BorderLayout.EAST);
+      painelTrat.add(tipoTrat, BorderLayout.EAST);
       painelNome.add(rotuloNome, BorderLayout.WEST);
       painelNome.add(campoNome, BorderLayout.EAST);
       painelTipo.add(rotuloTipo, BorderLayout.WEST);
-      painelTipo.add(campoTipo, BorderLayout.EAST);
+      painelTipo.add(tipoPass, BorderLayout.EAST);
       painelNasc.add(rotuloNasc, BorderLayout.WEST);
       painelNasc.add(campoNasc, BorderLayout.EAST);
       painelEmail.add(rotuloEmail, BorderLayout.WEST);
@@ -182,10 +172,13 @@ public class InfoPassageiro extends JFrame {
       add(painelFormulario, BorderLayout.CENTER);
    	
       painelBotoes = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-      botao = GUI.botaoVerde(new JButton("Editar Informações"));
-      botao.setIcon(GUI.icone("OK"));
-   
-      painelBotoes.add(botao);
+      botaoOK = GUI.botaoVerde(new JButton("OK"));
+      botaoOK.setIcon(GUI.icone("OK"));
+      botaoCancel = GUI.botaoVermelho(new JButton("Cancelar"));
+      botaoCancel.setIcon(GUI.icone("OK"));
+		
+		painelBotoes.add(botaoOK);
+		painelBotoes.add(botaoCancel);
    	
       painelBotoes.setBorder(BorderFactory.createEmptyBorder(0,40,10,5));
    	
