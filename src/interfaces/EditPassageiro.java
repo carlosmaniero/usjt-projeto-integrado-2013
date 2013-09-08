@@ -15,7 +15,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class CadastPassageiro extends JFrame {
+public class EditPassageiro extends JFrame {
 
    private BorderLayout layout;
    private JLabel titulo;
@@ -61,7 +61,7 @@ public class CadastPassageiro extends JFrame {
 	private JComboBox tipoPass;
 	private JComboBox tipoTrat;
 		
-   public CadastPassageiro(){
+   public EditPassageiro(){
       configurar();
       criarElementos();
       setSize(400, 420);
@@ -71,7 +71,7 @@ public class CadastPassageiro extends JFrame {
       layout = new BorderLayout(5, 5);
       setLayout(layout);
       setVisible(true);
-      setTitle("Cadastro de Passageiro");
+      setTitle("Editar Cadastro de Passageiro");
    }
 	
    private void criarElementos(){
@@ -79,7 +79,7 @@ public class CadastPassageiro extends JFrame {
       painelTitulo = new JPanel();
       painelTitulo.setBorder(BorderFactory.createMatteBorder(0,0,2,0,Color.BLACK));
       painelTitulo.setBackground(new Color(0x333333));
-      titulo = new JLabel("Cadastrar novo Passageiro");
+      titulo = new JLabel("Editar passageiro selecionado");
       painelTitulo.add(titulo);
    	
       titulo.setBorder(BorderFactory.createEmptyBorder(10,40,10,40));
