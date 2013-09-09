@@ -183,7 +183,7 @@ public class InfoPassageiro extends JFrame {
    	
       painelBotoes = new JPanel(new FlowLayout(FlowLayout.RIGHT));
       botao = GUI.botaoVerde(new JButton("Editar Informações"));
-      botao.setIcon(GUI.icone("OK"));
+      botao.setIcon(GUI.icone("ok"));
    
       painelBotoes.add(botao);
    	
