@@ -162,9 +162,9 @@ public class EditVoo extends JFrame {
    	
       painelBotoes = new JPanel(new FlowLayout(FlowLayout.RIGHT));
       botaoOK = GUI.botaoVerde(new JButton("Salvar Alterações"));
-      botaoOK.setIcon(GUI.icone("OK"));
+      botaoOK.setIcon(GUI.icone("ok"));
       botaoCancel = GUI.botaoVermelho(new JButton("Cancelar"));
-      botaoCancel.setIcon(GUI.icone("OK"));
+      botaoCancel.setIcon(GUI.icone("ok"));
    	
       painelBotoes.add(botaoOK);
       painelBotoes.add(botaoCancel);

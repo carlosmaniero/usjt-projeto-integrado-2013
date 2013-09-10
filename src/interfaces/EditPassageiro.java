@@ -101,7 +101,7 @@ public class EditPassageiro extends JFrame {
    	
       painelFormulario.setBorder(BorderFactory.createEmptyBorder(10,10,0,10));
    	
-      rotuloCod = new JLabel("Código:");
+      rotuloCod = new JLabel("Cï¿½digo:");
       rotuloTrat = new JLabel("Tipo de tratamento:");
       rotuloNome = new JLabel("Nome completo:");
       rotuloTipo = new JLabel("Tipo de passageiro:");
@@ -123,7 +123,7 @@ public class EditPassageiro extends JFrame {
       rotuloEmail.setHorizontalAlignment(SwingConstants.RIGHT);
       rotuloCel.setHorizontalAlignment(SwingConstants.RIGHT);
       
-  		String [] sTipoPass = {"Criança","Adulto","Idoso"};
+  		String [] sTipoPass = {"Crianï¿½a","Adulto","Idoso"};
 		tipoPass = GUI.textoPadrao(new JComboBox(sTipoPass));
 		
 		String [] sTipoTrat = {"Sr.","Sra."};
@@ -173,9 +173,9 @@ public class EditPassageiro extends JFrame {
    	
       painelBotoes = new JPanel(new FlowLayout(FlowLayout.RIGHT));
       botaoOK = GUI.botaoVerde(new JButton("OK"));
-      botaoOK.setIcon(GUI.icone("OK"));
+      botaoOK.setIcon(GUI.icone("ok"));
       botaoCancel = GUI.botaoVermelho(new JButton("Cancelar"));
-      botaoCancel.setIcon(GUI.icone("OK"));
+      botaoCancel.setIcon(GUI.icone("ok"));
 		
 		painelBotoes.add(botaoOK);
 		painelBotoes.add(botaoCancel);

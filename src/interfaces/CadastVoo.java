@@ -161,7 +161,7 @@ public class CadastVoo extends JFrame {
    	
       painelBotoes = new JPanel(new FlowLayout(FlowLayout.RIGHT));
       botao = GUI.botaoVerde(new JButton("Salvar"));
-      botao.setIcon(GUI.icone("OK"));
+      botao.setIcon(GUI.icone("ok"));
    	
       painelBotoes.add(botao);
    	
