@@ -12,6 +12,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 public class CompraPassagem extends JFrame{
 
 	private JComboBox destino;
@@ -42,7 +45,7 @@ public class CompraPassagem extends JFrame{
 	}
 	
 	public void criarElementos(){
-		// Painéis
+		// PainÃ©is
 		JPanel formulario = new JPanel(new BorderLayout());
 		JPanel painelPassagem = new JPanel(new GridLayout(1,2,10,10));
 		JPanel painelIda = new JPanel(new GridLayout(3,2,10,10));
@@ -107,7 +110,7 @@ public class CompraPassagem extends JFrame{
 		
 		
 		// Quantidade de Assenos
-		JLabel labelAssentos = new JLabel("Quantidade de assentos disponíveis: ");
+		JLabel labelAssentos = new JLabel("Quantidade de assentos disponÃ­veis: ");
 		quantidadeAssentos = new JLabel("00"); 
 		
 		painelQuantidade.add(labelAssentos);
@@ -116,8 +119,8 @@ public class CompraPassagem extends JFrame{
 		// Tipo de passageiros
 		JLabel labelTipo = new JLabel("Quantidade de passagens: ");
 		JLabel labelAdulto = new JLabel("Adulto:");
-		JLabel labelCrianca = new JLabel("Criança:");
-		JLabel labelBebe = new JLabel("Bebê:");
+		JLabel labelCrianca = new JLabel("CrianÃ§a:");
+		JLabel labelBebe = new JLabel("BebÃª:");
 		adulto = GUI.textoPadrao(new JTextField(2));
 		crianca= GUI.textoPadrao(new JTextField(2));
 		bebe = GUI.textoPadrao(new JTextField(2));
@@ -130,7 +133,7 @@ public class CompraPassagem extends JFrame{
 		painelTipo.add(labelBebe);
 		painelTipo.add(bebe);
 		
-		// Fomulário resultados
+		// FomulÃ¡rio resultados
 		JLabel labelValorDaPassagem = new JLabel("Valor da passagem: ");
 		valorDaPassagem = new JLabel("R$ 0,00");
 		JLabel labelTaxaDeEmbarque = new JLabel("Taxa de embarque: ");
@@ -147,6 +150,15 @@ public class CompraPassagem extends JFrame{
 		
 		painelCalculos.add(painelResultado);
 		botao = GUI.botaoVerde(new JButton("Confirmar"));
+		
+		botao.addActionListener(new ActionListener() {
+ 
+            public void actionPerformed(ActionEvent e)
+            {
+					new Pagamento();
+            }
+      });
+		
 		//botao.setIcon(GUI.icone("ok"));
 		painelCalculos.add(botao, BorderLayout.EAST);
 				
