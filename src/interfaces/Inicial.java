@@ -17,6 +17,10 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
+import javax.swing.JOptionPane;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Inicial extends JFrame{
 	
@@ -70,11 +74,11 @@ public class Inicial extends JFrame{
 		layout = new BorderLayout(5, 5);
 		setLayout(layout);
 		setVisible(true);
-		setTitle("Início - Sistema de passagens aéreas");
+		setTitle("InÃ­cio - Sistema de passagens aÃ©reas");
 	}
 	
 	private void criarElementos(){
-		// Título
+		// TÃ­tulo
 		painelTopo = new JPanel();
 		painelTopo.setBorder(BorderFactory.createMatteBorder(0,0,2,0,Color.BLACK));
 		painelTopo.setBackground(new Color(0x333333));
@@ -87,7 +91,7 @@ public class Inicial extends JFrame{
 		titulo.setForeground(Color.WHITE);
 		add(painelTopo, BorderLayout.NORTH);
 		
-		// Botões Topo
+		// BotÃµes Topo
 		painelTopoBotoes = new JPanel();
 		painelTopoBotoes.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		painelTopoBotoes.setBackground(new Color(0x333333));
@@ -95,7 +99,23 @@ public class Inicial extends JFrame{
 		sair = GUI.botaoVermelho(new JButton("Sair"));
 		sair.setIcon(GUI.icone("sair"));
 		
-		administrar = GUI.botaoCinza(new JButton("Funções Administrativas"));
+		sair.addActionListener(new ActionListener() {
+ 
+            public void actionPerformed(ActionEvent e)
+            {
+					System.exit(0);
+            }
+        });
+		
+		administrar = GUI.botaoCinza(new JButton("FunÃ§Ãµes Administrativas"));
+		
+		administrar.addActionListener(new ActionListener() {
+ 
+            public void actionPerformed(ActionEvent e)
+            {
+					new Administracao();
+            }
+        });
 		
 		painelTopoBotoes.add(administrar);
 		painelTopoBotoes.add(sair);
@@ -107,19 +127,71 @@ public class Inicial extends JFrame{
 		painelDeAcaoes.setBorder(GUI.BORDA_VAZIA);
 		
 		cadastrarPassageiro = GUI.botaoAzul(new JButton("Cadastrar"));
+		
+		cadastrarPassageiro.addActionListener(new ActionListener() {
+ 
+            public void actionPerformed(ActionEvent e)
+            {
+					new CadastPassageiro();
+            }
+        });
+		
+		
 		cadastrarPassageiro.setIcon(GUI.icone("mais"));
 		consultarPassageiro = GUI.botaoAzul(new JButton("Consultar"));
 		consultarPassageiro.setIcon(GUI.icone("busca"));
 		alterarPassageiro = GUI.botaoAzul(new JButton("Atualizar"));
 		alterarPassageiro.setIcon(GUI.icone("editar"));
+		alterarPassageiro.addActionListener(new ActionListener() {
+ 
+            public void actionPerformed(ActionEvent e)
+            {
+					JOptionPane.showInputDialog("Digite o código do passageiro: ");
+					new EditPassageiro();
+            }
+        });
 		comprarPassagem = GUI.botaoAzul(new JButton("Comprar"));
+		comprarPassagem.addActionListener(new ActionListener() {
+ 
+            public void actionPerformed(ActionEvent e)
+            {
+					new CompraPassagem();
+            }
+        });
 		comprarPassagem.setIcon(GUI.icone("dinheiro"));
 		cancelarPassagem = GUI.botaoAzul(new JButton("Cancelar"));
 		cancelarPassagem.setIcon(GUI.icone("remover"));
+		
+		cancelarPassagem.addActionListener(new ActionListener() {
+ 
+            public void actionPerformed(ActionEvent e)
+            {
+					new Cancelamento();
+            }
+      });
+		  
 		transferirPassagem = GUI.botaoAzul(new JButton("Transferir"));
 		transferirPassagem.setIcon(GUI.icone("transferir"));
+		
+		transferirPassagem.addActionListener(new ActionListener() {
+ 
+            public void actionPerformed(ActionEvent e)
+            {
+					new Transferencia();
+            }
+      });
+		
 		checkInPassagem = GUI.botaoAzul(new JButton("Check-in"));
 		checkInPassagem.setIcon(GUI.icone("check"));
+		
+		checkInPassagem.addActionListener(new ActionListener() {
+ 
+            public void actionPerformed(ActionEvent e)
+            {
+					new Check();
+            }
+      });
+		
 		consultarVoo = GUI.botaoAzul(new JButton("Consultar"));
 		consultarVoo.setIcon(GUI.icone("aviao"));
 		
@@ -127,7 +199,7 @@ public class Inicial extends JFrame{
 		painelPassageiros.setBorder(BorderFactory.createTitledBorder(GUI.BORDA_VAZIA, "Passageiros"));
 		
 		painelPassageiros.add(cadastrarPassageiro);
-		painelPassageiros.add(consultarPassageiro);
+		//painelPassageiros.add(consultarPassageiro);
 		painelPassageiros.add(alterarPassageiro);
 		painelPassageiros.add(new JLabel()); // Elemento vazio
 		
@@ -157,7 +229,7 @@ public class Inicial extends JFrame{
 
 	private void criarMenu(){
 		JMenuBar barra = new JMenuBar();
-		setJMenuBar(barra);
+		//setJMenuBar(barra);
 		
 		// Sistema
 		JMenu menuSistema = new JMenu("Sistema");
