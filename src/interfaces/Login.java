@@ -15,6 +15,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 public class Login extends JFrame {
 
 	private BorderLayout layout;
@@ -44,11 +47,11 @@ public class Login extends JFrame {
 		layout = new BorderLayout(5, 5);
 		setLayout(layout);
 		setVisible(true);
-		setTitle("Sistema de passagens aéreas");
+		setTitle("Sistema de passagens aÃ©reas");
 	}
 	
 	private void criarElementos(){
-		// Título
+		// TÃ­tulo
 		painelTitulo = new JPanel();
 		painelTitulo.setBorder(BorderFactory.createMatteBorder(0,0,2,0,Color.BLACK));
 		painelTitulo.setBackground(new Color(0x333333));
@@ -59,14 +62,14 @@ public class Login extends JFrame {
 		titulo.setForeground(Color.WHITE);
 		add(painelTitulo, BorderLayout.NORTH);
 
-		// Painéis
+		// PainÃ©is
 		painelFormulario			= new JPanel(new GridLayout(2,1,5,5));
 		painelUsuario 	= new JPanel(new BorderLayout());
 		painelSenha 	= new JPanel(new BorderLayout());
 		
 		painelFormulario.setBorder(BorderFactory.createEmptyBorder(10,40,0,40));
 		
-		rotuloUsuario = new JLabel("Usuário:");
+		rotuloUsuario = new JLabel("UsuÃ¡rio:");
 		rotuloSenha = new JLabel("Senha:");
 		
 		rotuloUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -92,7 +95,15 @@ public class Login extends JFrame {
 		botao = GUI.botaoVerde(new JButton("Entrar"));
 		botao.setIcon(GUI.icone("login"));
 		
-		String [] idiomas = {"Português", "Inglês", "Espanhol"};
+		botao.addActionListener(new ActionListener() {
+ 
+            public void actionPerformed(ActionEvent e)
+            {
+					new Inicial();
+            }
+        });
+		
+		String [] idiomas = {"PortuguÃªs", "InglÃªs", "Espanhol"};
 		idioma = GUI.textoPadrao(new JComboBox(idiomas));
 		
 		painelBotoes.add(idioma);
