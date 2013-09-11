@@ -13,6 +13,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 public class Check extends JFrame {
 
 	private BorderLayout layout;
@@ -37,7 +40,7 @@ public class Check extends JFrame {
 		layout = new BorderLayout(10,10);
 		setLayout(layout);
 		setVisible(true);
-		setTitle("Cancelamento da Passagem");
+		setTitle("Check-in");
 	}
 	
 	private void criarElementos(){
@@ -45,7 +48,7 @@ public class Check extends JFrame {
 		painelTitulo = new JPanel();
 		painelTitulo.setBorder(BorderFactory.createMatteBorder(0,0,2,0,Color.BLACK));
 		painelTitulo.setBackground(new Color(0x333333));
-		titulo = new JLabel("Digite o número do seu bilhete");
+		titulo = new JLabel("Digite o nÃºmero do seu bilhete");
 		painelTitulo.add(titulo);
 		
 		titulo.setBorder(GUI.BORDA_VAZIA);
@@ -65,6 +68,14 @@ public class Check extends JFrame {
 
 		botao = GUI.botaoVerde(new JButton("OK"));
 		botao.setIcon(GUI.icone("ok"));
+		
+		botao.addActionListener(new ActionListener() {
+ 
+            public void actionPerformed(ActionEvent e)
+            {
+					new EscolherAssento();
+            }
+      });
      	
 		painelBilhete.add(rotuloBilhete, BorderLayout.WEST);
 		painelBilhete.add(campoBilhete, BorderLayout.CENTER);
