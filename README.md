@@ -10,3 +10,10 @@ Ela é responsável pela configuração dos elementos do pacote "swing". Veja um
 	botao.setIcon(GUI.icone('nomeDoIcone'));
 	
 Na pasta icons, estão todos os icones utilizados no sistema.   
+
+## Grupo 12 (alterações)
+
+- Alterar, editar (voo)
+- Alterar, aeronave (Aeronave)
+- Consultar Passagens (por COD ou CPF)
+- Consultar Voo
