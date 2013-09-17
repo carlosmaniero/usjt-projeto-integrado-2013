@@ -194,10 +194,17 @@ public class Inicial extends JFrame{
             {
 					new Check(bundle);
             }
-      });
+		});
 		
 		consultarVoo = GUI.botaoAzul(new JButton(bundle.getString("Inicial.botao.consultarVoo")));
 		consultarVoo.setIcon(GUI.icone("aviao"));
+		consultarVoo.addActionListener(new ActionListener() {
+ 
+            public void actionPerformed(ActionEvent e)
+            {
+					new ConsultarVoo(bundle);
+            }
+		});
 		
 		painelPassageiros = new JPanel(new GridLayout(1,4,5,10));
 		painelPassageiros.setBorder(BorderFactory.createTitledBorder(GUI.BORDA_VAZIA, bundle.getString("Inicial.painel.painelPassageiros")));
