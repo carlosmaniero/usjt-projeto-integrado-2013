@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
 
 public class Inicial extends JFrame{
 	
@@ -62,41 +63,43 @@ public class Inicial extends JFrame{
 	private JMenuItem menuAlterarAeronave;
 	private JMenuItem menuConsultarAeronave;
 	private JMenuItem menuCadastrarAeronave;
+	private ResourceBundle bundle;
 		
-	public Inicial(){
+	public Inicial(ResourceBundle bundle){
+		this.bundle = bundle;
 		configurar();
 		criarElementos();
-		criarMenu();
-		setSize(800, 600);
 	}
 	
 	private void configurar(){
 		layout = new BorderLayout(5, 5);
 		setLayout(layout);
 		setVisible(true);
-		setTitle("InÃ­cio - Sistema de passagens aÃ©reas");
+		setTitle(bundle.getString("Inicial.title"));
+		setSize(800, 600);
+		setLocationRelativeTo(null);
 	}
 	
 	private void criarElementos(){
-		// TÃ­tulo
+		// T�tulo
 		painelTopo = new JPanel();
 		painelTopo.setBorder(BorderFactory.createMatteBorder(0,0,2,0,Color.BLACK));
 		painelTopo.setBackground(new Color(0x333333));
 		painelTopo.setLayout(new BorderLayout());
 		
-		titulo = new JLabel("Bem-vindo {nomeUsuario}");
+		titulo = new JLabel(bundle.getString("Inicial.rotulo.titulo") + " {nomeUsuario}");
 		painelTopo.add(titulo, BorderLayout.WEST);
 		
 		titulo.setBorder(GUI.BORDA_VAZIA);
 		titulo.setForeground(Color.WHITE);
 		add(painelTopo, BorderLayout.NORTH);
 		
-		// BotÃµes Topo
+		// Bot�es Topo
 		painelTopoBotoes = new JPanel();
 		painelTopoBotoes.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		painelTopoBotoes.setBackground(new Color(0x333333));
 		
-		sair = GUI.botaoVermelho(new JButton("Sair"));
+		sair = GUI.botaoVermelho(new JButton(bundle.getString("Inicial.botao.sair")));
 		sair.setIcon(GUI.icone("sair"));
 		
 		sair.addActionListener(new ActionListener() {
@@ -107,13 +110,13 @@ public class Inicial extends JFrame{
             }
         });
 		
-		administrar = GUI.botaoCinza(new JButton("FunÃ§Ãµes Administrativas"));
+		administrar = GUI.botaoCinza(new JButton(bundle.getString("Inicial.botao.administrar")));
 		
 		administrar.addActionListener(new ActionListener() {
  
             public void actionPerformed(ActionEvent e)
             {
-					new Administracao();
+					new Administracao(bundle);
             }
         });
 		
@@ -126,7 +129,7 @@ public class Inicial extends JFrame{
 		painelDeAcaoes = new JPanel(new GridLayout(3,1,10,10));
 		painelDeAcaoes.setBorder(GUI.BORDA_VAZIA);
 		
-		cadastrarPassageiro = GUI.botaoAzul(new JButton("Cadastrar"));
+		cadastrarPassageiro = GUI.botaoAzul(new JButton(bundle.getString("Inicial.botao.cadastrarPassageiro")));
 		
 		cadastrarPassageiro.addActionListener(new ActionListener() {
  
@@ -138,19 +141,19 @@ public class Inicial extends JFrame{
 		
 		
 		cadastrarPassageiro.setIcon(GUI.icone("mais"));
-		consultarPassageiro = GUI.botaoAzul(new JButton("Consultar"));
+		consultarPassageiro = GUI.botaoAzul(new JButton(bundle.getString("Inicial.botao.consultarPassageiro")));
 		consultarPassageiro.setIcon(GUI.icone("busca"));
-		alterarPassageiro = GUI.botaoAzul(new JButton("Atualizar"));
+		alterarPassageiro = GUI.botaoAzul(new JButton(bundle.getString("Inicial.botao.alterarPassageiro")));
 		alterarPassageiro.setIcon(GUI.icone("editar"));
 		alterarPassageiro.addActionListener(new ActionListener() {
  
             public void actionPerformed(ActionEvent e)
             {
-					JOptionPane.showInputDialog("Digite o código do passageiro: ");
+					JOptionPane.showInputDialog(bundle.getString("Inicial.JOptionPane.editar"));
 					new EditPassageiro();
             }
         });
-		comprarPassagem = GUI.botaoAzul(new JButton("Comprar"));
+		comprarPassagem = GUI.botaoAzul(new JButton(bundle.getString("Inicial.botao.comprarPassagem")));
 		comprarPassagem.addActionListener(new ActionListener() {
  
             public void actionPerformed(ActionEvent e)
@@ -159,7 +162,7 @@ public class Inicial extends JFrame{
             }
         });
 		comprarPassagem.setIcon(GUI.icone("dinheiro"));
-		cancelarPassagem = GUI.botaoAzul(new JButton("Cancelar"));
+		cancelarPassagem = GUI.botaoAzul(new JButton(bundle.getString("Inicial.botao.cancelarPassagem")));
 		cancelarPassagem.setIcon(GUI.icone("remover"));
 		
 		cancelarPassagem.addActionListener(new ActionListener() {
@@ -170,7 +173,7 @@ public class Inicial extends JFrame{
             }
       });
 		  
-		transferirPassagem = GUI.botaoAzul(new JButton("Transferir"));
+		transferirPassagem = GUI.botaoAzul(new JButton(bundle.getString("Inicial.botao.transferirPassagem")));
 		transferirPassagem.setIcon(GUI.icone("transferir"));
 		
 		transferirPassagem.addActionListener(new ActionListener() {
@@ -181,7 +184,7 @@ public class Inicial extends JFrame{
             }
       });
 		
-		checkInPassagem = GUI.botaoAzul(new JButton("Check-in"));
+		checkInPassagem = GUI.botaoAzul(new JButton(bundle.getString("Inicial.botao.checkInPassagem")));
 		checkInPassagem.setIcon(GUI.icone("check"));
 		
 		checkInPassagem.addActionListener(new ActionListener() {
@@ -192,11 +195,11 @@ public class Inicial extends JFrame{
             }
       });
 		
-		consultarVoo = GUI.botaoAzul(new JButton("Consultar"));
+		consultarVoo = GUI.botaoAzul(new JButton(bundle.getString("Inicial.botao.consultarVoo")));
 		consultarVoo.setIcon(GUI.icone("aviao"));
 		
 		painelPassageiros = new JPanel(new GridLayout(1,4,5,10));
-		painelPassageiros.setBorder(BorderFactory.createTitledBorder(GUI.BORDA_VAZIA, "Passageiros"));
+		painelPassageiros.setBorder(BorderFactory.createTitledBorder(GUI.BORDA_VAZIA, bundle.getString("Inicial.painel.painelPassageiros")));
 		
 		painelPassageiros.add(cadastrarPassageiro);
 		//painelPassageiros.add(consultarPassageiro);
@@ -205,7 +208,7 @@ public class Inicial extends JFrame{
 		
 		
 		painelPassagens = new JPanel(new GridLayout(1,4,5,10));
-		painelPassagens.setBorder(BorderFactory.createTitledBorder(GUI.BORDA_VAZIA, "Passagens"));
+		painelPassagens.setBorder(BorderFactory.createTitledBorder(GUI.BORDA_VAZIA, bundle.getString("Inicial.painel.painelPassagens")));
 		
 		painelPassagens.add(comprarPassagem);
 		painelPassagens.add(cancelarPassagem);
@@ -216,7 +219,7 @@ public class Inicial extends JFrame{
 		painelDeAcaoes.add(painelPassagens);
 		
 		painelVoos = new JPanel(new GridLayout(1,4,5,10));
-		painelVoos.setBorder(BorderFactory.createTitledBorder(GUI.BORDA_VAZIA, "Voos"));
+		painelVoos.setBorder(BorderFactory.createTitledBorder(GUI.BORDA_VAZIA, bundle.getString("Inicial.painel.painelVoos")));
 		
 		painelVoos.add(consultarVoo);
 		painelVoos.add(new JLabel()); // Elemento vazio
@@ -227,65 +230,4 @@ public class Inicial extends JFrame{
 		add(painelDeAcaoes, BorderLayout.CENTER);
 	}
 
-	private void criarMenu(){
-		JMenuBar barra = new JMenuBar();
-		//setJMenuBar(barra);
-		
-		// Sistema
-		JMenu menuSistema = new JMenu("Sistema");
-		menuSobre = new JMenuItem("Sobre");
-		menuSair = new JMenuItem("Sair");
-		menuSistema.add(menuSobre);
-		menuSistema.add(new JSeparator());
-		menuSistema.add(menuSair);
-		
-		barra.add(menuSistema);
-		
-		// Passageiro
-		JMenu menuPassageiros = new JMenu("Passageiros");
-		menuCadastrarPassageiro = new JMenuItem("Cadastrar");
-		menuConsultarPassageiro = new JMenuItem("Consultar");
-		menuAlterarPassageiro = new JMenuItem("Alterar");
-		menuPassageiros.add(menuCadastrarPassageiro);
-		menuPassageiros.add(menuConsultarPassageiro);
-		menuPassageiros.add(menuAlterarPassageiro);
-		
-		barra.add(menuPassageiros);
-		
-		// Passageiro
-		JMenu menuPassagens = new JMenu("Passagens");
-		menuComprarPassagens = new JMenuItem("Comprar");
-		menuCancelarPassagem = new JMenuItem("Cancelar");
-		menuTransferirPassagem = new JMenuItem("Transferir");
-		menuCheckInPassagem = new JMenuItem("Check-in");
-		
-		menuPassagens.add(menuComprarPassagens);
-		menuPassagens.add(menuCancelarPassagem);
-		menuPassagens.add(menuTransferirPassagem);
-		menuPassagens.add(menuCheckInPassagem);
-		
-		barra.add(menuPassagens);
-				
-		// Voos
-		JMenu menuVoos= new JMenu("Voos");
-		menuCadastrarVoo = new JMenuItem("Cadastrar");
-		menuConsultarVoo = new JMenuItem("Consultar");
-		menuAlterarVoo = new JMenuItem("Alterar");
-		menuVoos.add(menuCadastrarVoo);
-		menuVoos.add(menuConsultarVoo);
-		menuVoos.add(menuAlterarVoo);
-		
-		barra.add(menuVoos);
-		
-		// Aeronaves
-		JMenu menuAeronaves = new JMenu("Aeronaves");
-		menuCadastrarAeronave = new JMenuItem("Cadastrar");
-		menuConsultarAeronave = new JMenuItem("Consultar");
-		menuAlterarAeronave = new JMenuItem("Alterar");
-		menuAeronaves.add(menuCadastrarAeronave);
-		menuAeronaves.add(menuConsultarAeronave);
-		menuAeronaves.add(menuAlterarAeronave);
-		
-		barra.add(menuAeronaves);
-	}
 }

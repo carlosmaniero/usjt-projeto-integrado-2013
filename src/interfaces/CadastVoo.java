@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.util.ResourceBundle;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -51,18 +52,21 @@ public class CadastVoo extends JFrame {
    private JComboBox comboOrig;
    private JComboBox comboDest;
    private JComboBox comboSitu;
+   private ResourceBundle bundle; 
    		
-   public CadastVoo(){
+   public CadastVoo(ResourceBundle bundle){
+	  this.bundle = bundle;
       configurar();
       criarElementos();
-      setSize(400, 420);
    }
 	
    private void configurar(){
       layout = new BorderLayout(5, 5);
       setLayout(layout);
       setVisible(true);
-      setTitle("Cadastrar Voo");
+      setTitle(bundle.getString("CadastVoo.title"));
+      setSize(400, 420);
+      setLocationRelativeTo(null);
    }
 	
    private void criarElementos(){
@@ -70,7 +74,7 @@ public class CadastVoo extends JFrame {
       painelTitulo = new JPanel();
       painelTitulo.setBorder(BorderFactory.createMatteBorder(0,0,2,0,Color.BLACK));
       painelTitulo.setBackground(new Color(0x333333));
-      titulo = new JLabel("Cadastrar novo Voo");
+      titulo = new JLabel(bundle.getString("CadastVoo.rotulo.titulo"));
       painelTitulo.add(titulo);
    	
       titulo.setBorder(BorderFactory.createEmptyBorder(10,40,10,40));
@@ -90,17 +94,17 @@ public class CadastVoo extends JFrame {
    	
       painelFormulario.setBorder(BorderFactory.createEmptyBorder(10,10,0,10));
    	
-      rotuloCod   = new JLabel("Código:");
-      rotuloAero  = new JLabel("Aeronave:");
-      rotuloOrig  = new JLabel("Origem:");
-      rotuloDest  = new JLabel("Destino:");
-      rotuloEsca  = new JLabel("Escalas:");
-      rotuloHora = new JLabel("Horário:");
-      rotuloSitu   = new JLabel("Situação:");
+      rotuloCod   = new JLabel(bundle.getString("CadastVoo.rotulo.rotuloCod"));
+      rotuloAero  = new JLabel(bundle.getString("CadastVoo.rotulo.rotuloAero"));
+      rotuloOrig  = new JLabel(bundle.getString("CadastVoo.rotulo.rotuloOrig"));
+      rotuloDest  = new JLabel(bundle.getString("CadastVoo.rotulo.rotuloDest"));
+      rotuloEsca  = new JLabel(bundle.getString("CadastVoo.rotulo.rotuloEsca"));
+      rotuloHora = new JLabel(bundle.getString("CadastVoo.rotulo.rotuloHora"));
+      rotuloSitu   = new JLabel(bundle.getString("CadastVoo.rotulo.rotuloSitu"));
       
-      campoCod = GUI.textoPadrao(new JTextField(" ",20));;
-      campoEsca = GUI.textoPadrao(new JTextField(" ",20));;
-      campoHora = GUI.textoPadrao(new JTextField(" ",20));;
+      campoCod = GUI.textoPadrao(new JTextField(20));;
+      campoEsca = GUI.textoPadrao(new JTextField(20));;
+      campoHora = GUI.textoPadrao(new JTextField(20));;
       
       rotuloCod.setHorizontalAlignment(SwingConstants.RIGHT);
       rotuloAero.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -160,7 +164,7 @@ public class CadastVoo extends JFrame {
       add(painelFormulario, BorderLayout.CENTER);
    	
       painelBotoes = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-      botao = GUI.botaoVerde(new JButton("Salvar"));
+      botao = GUI.botaoVerde(new JButton(bundle.getString("CadastVoo.botao.botao")));
       botao.setIcon(GUI.icone("ok"));
    	
       painelBotoes.add(botao);

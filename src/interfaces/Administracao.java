@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import java.awt.GridLayout;
+import java.util.ResourceBundle;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -18,31 +19,34 @@ public class Administracao extends JFrame {
 	private JButton cadastrarAeronave;
 	private JButton consultarAeronave;
 	private JPanel painelAeronave;
+	private ResourceBundle bundle;
 	
 	
-	public Administracao(){
+	public Administracao(ResourceBundle bundle){
+		this.bundle = bundle;
 		configurar();
 		criarElementos();
-		setSize(600, 300);
 	}
 	
 	private void configurar(){
 		setLayout(new GridLayout(2,1,10,10));
 		setVisible(true);
-		setTitle("AdministraÃ§Ã£o - Sistema de passagens aÃ©reas");
+		setTitle(bundle.getString("Administracao.title"));
+		setSize(600, 300);
+		setLocationRelativeTo(null);
 	}
 	
 	private void criarElementos(){
-		cadastrarVoo = GUI.botaoAzul(new JButton("Cadastrar"));
+		cadastrarVoo = GUI.botaoAzul(new JButton(bundle.getString("Administracao.botao.cadastrarVoo")));
 		cadastrarVoo.setIcon(GUI.icone("mais"));
-		consultarVoo = GUI.botaoAzul(new JButton("Consultar"));
+		consultarVoo = GUI.botaoAzul(new JButton(bundle.getString("Administracao.botao.consultarVoo")));
 		consultarVoo.setIcon(GUI.icone("busca"));
 		
 		cadastrarVoo.addActionListener(new ActionListener() {
  
             public void actionPerformed(ActionEvent e)
             {
-                new CadastVoo();
+                new CadastVoo(bundle);
             }
         }); 
 		  
@@ -55,21 +59,21 @@ public class Administracao extends JFrame {
         }); 
 		
 		painelVoos = new JPanel(new GridLayout(1,2,5,10));
-		painelVoos.setBorder(BorderFactory.createTitledBorder(GUI.BORDA_VAZIA, "Voos"));
+		painelVoos.setBorder(BorderFactory.createTitledBorder(GUI.BORDA_VAZIA, bundle.getString("Administracao.painel.painelVoos")));
 		
 		painelVoos.add(cadastrarVoo);
 		//painelVoos.add(consultarVoo);
 		
-		cadastrarAeronave = GUI.botaoAzul(new JButton("Cadastrar"));
+		cadastrarAeronave = GUI.botaoAzul(new JButton(bundle.getString("Administracao.botao.cadastrarAeronave")));
 		cadastrarAeronave.setIcon(GUI.icone("mais"));
-		consultarAeronave = GUI.botaoAzul(new JButton("Consultar"));
+		consultarAeronave = GUI.botaoAzul(new JButton(bundle.getString("Administracao.botao.consultarAeronave")));
 		consultarAeronave.setIcon(GUI.icone("busca"));
 		
 		cadastrarAeronave.addActionListener(new ActionListener() {
  
             public void actionPerformed(ActionEvent e)
             {
-                new CadastAeronave();
+                new CadastAeronave(bundle);
             }
         }); 
 		  
@@ -82,7 +86,7 @@ public class Administracao extends JFrame {
         }); 
 		
 		painelAeronave = new JPanel(new GridLayout(1,2,5,10));
-		painelAeronave.setBorder(BorderFactory.createTitledBorder(GUI.BORDA_VAZIA, "Voos"));
+		painelAeronave.setBorder(BorderFactory.createTitledBorder(GUI.BORDA_VAZIA, bundle.getString("Administracao.painel.painelAeronave")));
 		
 		painelAeronave.add(cadastrarAeronave);
 		//painelAeronave.add(consultarAeronave);

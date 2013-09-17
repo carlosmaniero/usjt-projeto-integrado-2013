@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.util.ResourceBundle;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -37,18 +39,23 @@ public class CadastAeronave extends JFrame {
    private JPanel painelBotoes;
 	
    private JButton botao;
+   
+   private ResourceBundle bundle;
 	
-   public CadastAeronave(){
+   public CadastAeronave(ResourceBundle bundle){
+	  this.bundle = bundle;
       configurar();
       criarElementos();
-      setSize(400, 270);
+      
    }
 	
    private void configurar(){
       layout = new BorderLayout(5, 5);
       setLayout(layout);
       setVisible(true);
-      setTitle("Cadastrar/Editar Aeronave");
+      setTitle(bundle.getString("CadastAeronave.title"));
+      setSize(400, 270);
+      setLocationRelativeTo(null);
    }
 	
    private void criarElementos(){
@@ -56,7 +63,7 @@ public class CadastAeronave extends JFrame {
       painelTitulo = new JPanel();
       painelTitulo.setBorder(BorderFactory.createMatteBorder(0,0,2,0,Color.BLACK));
       painelTitulo.setBackground(new Color(0x333333));
-      titulo = new JLabel("Cadastrar nova aeronave.");
+      titulo = new JLabel(bundle.getString("CadastAeronave.rotulo.titulo"));
       painelTitulo.add(titulo);
    	
       titulo.setBorder(BorderFactory.createEmptyBorder(10,40,10,40));
@@ -72,9 +79,9 @@ public class CadastAeronave extends JFrame {
    
       painelFormulario.setBorder(BorderFactory.createEmptyBorder(10,10,0,10));
    	
-      rotuloCod = new JLabel("Código:");
-      rotuloTipo = new JLabel("Tipo de aeronave:");
-      rotuloAss = new JLabel("Qtdade de Assentos:");
+      rotuloCod = new JLabel(bundle.getString("CadastAeronave.rotulo.rotuloCod"));
+      rotuloTipo = new JLabel(bundle.getString("CadastAeronave.rotulo.rotuloTipo"));
+      rotuloAss = new JLabel(bundle.getString("CadastAeronave.rotulo.rotuloAss"));
    
       campoCod = GUI.textoPadrao(new JTextField("201212",20));;
       campoTipo = GUI.textoPadrao(new JTextField("747",20));;

@@ -17,6 +17,10 @@ import javax.swing.SwingConstants;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class Login extends JFrame {
 
@@ -36,26 +40,29 @@ public class Login extends JFrame {
 	
 	private JButton botao;
 	private JComboBox idioma;
+	private ResourceBundle bundle;
 	
-	public Login(){
+	public Login(ResourceBundle bundle){
+		this.bundle = bundle;
 		configurar();
 		criarElementos();
-		setSize(400, 220); // Bug bizarro
 	}
 	
 	private void configurar(){
 		layout = new BorderLayout(5, 5);
 		setLayout(layout);
 		setVisible(true);
-		setTitle("Sistema de passagens aÃ©reas");
+		setSize(400, 220); 
+		setLocationRelativeTo(null);
+		setTitle(bundle.getString("Login.title"));
 	}
 	
 	private void criarElementos(){
-		// TÃ­tulo
+		// T�tulo
 		painelTitulo = new JPanel();
 		painelTitulo.setBorder(BorderFactory.createMatteBorder(0,0,2,0,Color.BLACK));
 		painelTitulo.setBackground(new Color(0x333333));
-		titulo = new JLabel("Digite seus dados abaixo para acessar o sistema");
+		titulo = new JLabel(bundle.getString("Login.rotulo.titulo"));
 		painelTitulo.add(titulo);
 		
 		titulo.setBorder(BorderFactory.createEmptyBorder(10,40,10,40));
@@ -69,8 +76,8 @@ public class Login extends JFrame {
 		
 		painelFormulario.setBorder(BorderFactory.createEmptyBorder(10,40,0,40));
 		
-		rotuloUsuario = new JLabel("UsuÃ¡rio:");
-		rotuloSenha = new JLabel("Senha:");
+		rotuloUsuario = new JLabel(bundle.getString("Login.rotulo.rotuloUsuario"));
+		rotuloSenha = new JLabel(bundle.getString("Login.rotulo.rotuloSenha"));
 		
 		rotuloUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
 		rotuloSenha.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -92,19 +99,38 @@ public class Login extends JFrame {
 		add(painelFormulario, BorderLayout.CENTER);
 		
 		painelBotoes = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		botao = GUI.botaoVerde(new JButton("Entrar"));
+		botao = GUI.botaoVerde(new JButton(bundle.getString("Login.botao.botao")));
 		botao.setIcon(GUI.icone("login"));
 		
 		botao.addActionListener(new ActionListener() {
  
             public void actionPerformed(ActionEvent e)
             {
-					new Inicial();
+					new Inicial(bundle);
             }
         });
 		
-		String [] idiomas = {"PortuguÃªs", "InglÃªs", "Espanhol"};
+		String [] idiomas = {bundle.getString("Login.combo.portugues"), bundle.getString("Login.combo.ingles"), bundle.getString("Login.combo.espanhol")};
 		idioma = GUI.textoPadrao(new JComboBox(idiomas));
+		idioma.addItemListener(new ItemListener() {
+	        public void itemStateChanged(ItemEvent arg0) {
+	        	Locale locale;
+	            if(idioma.getSelectedIndex() == 0)
+	            	locale = new Locale("pt","BR");
+	            else if(idioma.getSelectedIndex() == 1)
+	            	locale = new Locale("en","US");
+	            else
+	            	locale = new Locale("es","ES");
+	            
+	            bundle = ResourceBundle.getBundle("SistVoo", locale);
+	            
+	            setTitle(bundle.getString("Login.title"));
+	            titulo.setText(bundle.getString("Login.rotulo.titulo"));
+	            rotuloUsuario.setText(bundle.getString("Login.rotulo.rotuloUsuario"));
+	            rotuloSenha.setText(bundle.getString("Login.rotulo.rotuloSenha"));
+	            botao.setText(bundle.getString("Login.botao.botao"));
+	        }
+	    });
 		
 		painelBotoes.add(idioma);
 		painelBotoes.add(botao);
