@@ -15,6 +15,7 @@ import javax.swing.SwingConstants;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
 
 public class Check extends JFrame {
 
@@ -29,8 +30,10 @@ public class Check extends JFrame {
 	private JPanel painelBilhete;
 	
 	private JButton botao;
+	private ResourceBundle bundle;
 	
-	public Check(){
+	public Check(ResourceBundle bundle){
+		this.bundle = bundle;
 		configurar();
 		criarElementos();
 		setSize(500, 150);
@@ -40,7 +43,7 @@ public class Check extends JFrame {
 		layout = new BorderLayout(10,10);
 		setLayout(layout);
 		setVisible(true);
-		setTitle("Check-in");
+		setTitle(bundle.getString("Check.title"));
 	}
 	
 	private void criarElementos(){
@@ -48,7 +51,7 @@ public class Check extends JFrame {
 		painelTitulo = new JPanel();
 		painelTitulo.setBorder(BorderFactory.createMatteBorder(0,0,2,0,Color.BLACK));
 		painelTitulo.setBackground(new Color(0x333333));
-		titulo = new JLabel("Digite o nÃºmero do seu bilhete");
+		titulo = new JLabel(bundle.getString("Check.rotulo.titulo"));
 		painelTitulo.add(titulo);
 		
 		titulo.setBorder(GUI.BORDA_VAZIA);
@@ -60,7 +63,7 @@ public class Check extends JFrame {
 		painelBilhete = new JPanel(new BorderLayout());
 		painelFormulario.setBorder(GUI.BORDA_VAZIA);
 		
-		rotuloBilhete = new JLabel("Bilhete: ");
+		rotuloBilhete = new JLabel(bundle.getString("Check.rotulo.rotuloBilhete"));
 		rotuloBilhete.setBorder(GUI.BORDA_VAZIA);
 		
 		campoBilhete = GUI.textoPadrao(new JTextField());
@@ -73,7 +76,7 @@ public class Check extends JFrame {
  
             public void actionPerformed(ActionEvent e)
             {
-					new EscolherAssento();
+					new EscolherAssento(bundle);
             }
       });
      	

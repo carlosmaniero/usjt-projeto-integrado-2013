@@ -55,6 +55,7 @@ public class Login extends JFrame {
 		setSize(400, 220); 
 		setLocationRelativeTo(null);
 		setTitle(bundle.getString("Login.title"));
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 	private void criarElementos(){
@@ -106,6 +107,7 @@ public class Login extends JFrame {
  
             public void actionPerformed(ActionEvent e)
             {
+            		dispose();
 					new Inicial(bundle);
             }
         });

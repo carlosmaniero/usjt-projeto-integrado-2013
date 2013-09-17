@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.GridLayout;  
 import java.awt.BorderLayout;
+import java.util.ResourceBundle;
 
 public class Pagamento extends JFrame{
 
@@ -29,8 +30,10 @@ public class Pagamento extends JFrame{
 	
 	private JButton botaoCheque;
 	
+	private ResourceBundle bundle;
 
-	public Pagamento(){
+	public Pagamento(ResourceBundle bundle){
+		this.bundle = bundle;
 		criarElementos();
 		configurar();
 	}
@@ -38,7 +41,7 @@ public class Pagamento extends JFrame{
 	private void configurar(){
 		setSize(450,350);
 		setVisible(true);
-		setTitle("Pagamento - Sistema de passagens aÃ©reas");
+		setTitle(bundle.getString("Pagamento.title"));
 	}
 	
 	private void criarElementos(){
@@ -50,12 +53,12 @@ public class Pagamento extends JFrame{
 		
 		JPanel painelCartao = new JPanel(new GridLayout(6,2, 10,10));
 
-		JLabel rotuloBandeira = new JLabel("Tipo de cartão de crédito:");
-		JLabel rotuloTitular = new JLabel("Nome do titular: ");
-		JLabel rotuloCPF = new JLabel("CPF: ");
-		JLabel rotuloCartao = new JLabel("Cartão: ");
-		JLabel rotuloDigito = new JLabel("Digito: ");
-		JLabel rotuloValidade = new JLabel("Data de Validade: ");
+		JLabel rotuloBandeira = new JLabel(bundle.getString("Pagamento.rotulo.rotuloBandeira"));
+		JLabel rotuloTitular = new JLabel(bundle.getString("Pagamento.rotulo.rotuloTitular"));
+		JLabel rotuloCPF = new JLabel(bundle.getString("Pagamento.rotulo.rotuloCPF"));
+		JLabel rotuloCartao = new JLabel(bundle.getString("Pagamento.rotulo.rotuloCartao"));
+		JLabel rotuloDigito = new JLabel(bundle.getString("Pagamento.rotulo.rotuloDigito"));
+		JLabel rotuloValidade = new JLabel(bundle.getString("Pagamento.rotulo.rotuloValidade"));
 		
 		painelCartao.add(rotuloBandeira);
 		painelCartao.add(bandeira);
@@ -74,22 +77,22 @@ public class Pagamento extends JFrame{
 		
 		formularioCartao.add(painelCartao, BorderLayout.CENTER);
 		
-		botaoCartao = GUI.botaoVerde(new JButton("Confirmar"));
+		botaoCartao = GUI.botaoVerde(new JButton(bundle.getString("Pagamento.botao.botaoCartao")));
 		botaoCartao.setIcon(GUI.icone("ok"));
 		
 		formularioCartao.add(botaoCartao, BorderLayout.SOUTH);
-		painelAbas.add(formularioCartao, "Cartão de crédito");
+		painelAbas.add(formularioCartao, bundle.getString("Pagamento.painel.abaCartao"));
 		
 		// Painel Cheque
 		JPanel formularioCheque = new JPanel(new BorderLayout());
 		formularioCheque.setBorder(GUI.BORDA_VAZIA);
 		
 		JPanel painelCheque = new JPanel(new GridLayout(5,2,10,10));
-		JLabel rotuloBanco = new JLabel("Banco: ");
-		JLabel rotuloTitularCheque = new JLabel("Títular: ");
-		JLabel rotuloCPFCheque = new JLabel("CPF: ");
-		JLabel rotuloAgencia = new JLabel("Agência: ");
-		JLabel rotuloCC = new JLabel("Conta Corrente: ");
+		JLabel rotuloBanco = new JLabel(bundle.getString("Pagamento.rotulo.rotuloBanco"));
+		JLabel rotuloTitularCheque = new JLabel(bundle.getString("Pagamento.rotulo.rotuloTitularCheque"));
+		JLabel rotuloCPFCheque = new JLabel(bundle.getString("Pagamento.rotulo.rotuloCPFCheque"));
+		JLabel rotuloAgencia = new JLabel(bundle.getString("Pagamento.rotulo.rotuloAgencia"));
+		JLabel rotuloCC = new JLabel(bundle.getString("Pagamento.rotulo.rotuloCC"));
 		
 		painelCheque.add(rotuloBanco);
 		painelCheque.add(banco);
@@ -105,12 +108,12 @@ public class Pagamento extends JFrame{
 		
 		formularioCheque.add(painelCheque, BorderLayout.CENTER);
 		
-		botaoCheque = GUI.botaoVerde(new JButton("Confirmar"));
+		botaoCheque = GUI.botaoVerde(new JButton(bundle.getString("Pagamento.botao.botaoCheque")));
 		botaoCheque.setIcon(GUI.icone("ok"));
 		
 		formularioCheque.add(botaoCheque, BorderLayout.SOUTH);
 		
-		painelAbas.add(formularioCheque, "Cheque");
+		painelAbas.add(formularioCheque, bundle.getString("Pagamento.painel.abaCheque"));
 		
 		add(painelAbas);
 	}

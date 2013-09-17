@@ -78,6 +78,7 @@ public class Inicial extends JFrame{
 		setTitle(bundle.getString("Inicial.title"));
 		setSize(800, 600);
 		setLocationRelativeTo(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 	private void criarElementos(){
@@ -135,7 +136,7 @@ public class Inicial extends JFrame{
  
             public void actionPerformed(ActionEvent e)
             {
-					new CadastPassageiro();
+					new CadastPassageiro(bundle);
             }
         });
 		
@@ -150,7 +151,7 @@ public class Inicial extends JFrame{
             public void actionPerformed(ActionEvent e)
             {
 					JOptionPane.showInputDialog(bundle.getString("Inicial.JOptionPane.editar"));
-					new EditPassageiro();
+					new EditPassageiro(bundle);
             }
         });
 		comprarPassagem = GUI.botaoAzul(new JButton(bundle.getString("Inicial.botao.comprarPassagem")));
@@ -158,7 +159,7 @@ public class Inicial extends JFrame{
  
             public void actionPerformed(ActionEvent e)
             {
-					new CompraPassagem();
+					new CompraPassagem(bundle);
             }
         });
 		comprarPassagem.setIcon(GUI.icone("dinheiro"));
@@ -169,7 +170,7 @@ public class Inicial extends JFrame{
  
             public void actionPerformed(ActionEvent e)
             {
-					new Cancelamento();
+					new Cancelamento(bundle);
             }
       });
 		  
@@ -180,7 +181,7 @@ public class Inicial extends JFrame{
  
             public void actionPerformed(ActionEvent e)
             {
-					new Transferencia();
+					new Transferencia(bundle);
             }
       });
 		
@@ -191,7 +192,7 @@ public class Inicial extends JFrame{
  
             public void actionPerformed(ActionEvent e)
             {
-					new Check();
+					new Check(bundle);
             }
       });
 		

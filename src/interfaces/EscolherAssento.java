@@ -2,6 +2,7 @@ package interfaces;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.util.ResourceBundle;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,8 +19,10 @@ public class EscolherAssento extends JFrame {
 	private int numeroDeLinhas = 10;
 	private JPanel painelAssentos;
 	private JTextField[] posicao = new JTextField[10];
+	private ResourceBundle bundle;
 	
-	public EscolherAssento(){
+	public EscolherAssento(ResourceBundle bundle){
+		this.bundle = bundle;
 		configurar();
 		criarElementos();
 		criarAviao();
@@ -28,7 +31,7 @@ public class EscolherAssento extends JFrame {
 
 	private void configurar(){
 		setVisible(true);
-		setTitle("Pagamento - Escolher assentos");
+		setTitle(bundle.getString("EscolherAssento.title"));
 		setLayout(null);
 	}
 	
@@ -41,14 +44,14 @@ public class EscolherAssento extends JFrame {
 		JLabel[] rotuloPosicao = new JLabel[posicao.length];
 		for(int i=0; i < posicao.length; i++){
 			
-			rotuloPosicao[i] = new JLabel("Posicao do assento:");
+			rotuloPosicao[i] = new JLabel(bundle.getString("EscolherAssento.rotulo.rotuloPosicao"));
 			posicao[i] = new JTextField();
 			
 			painel.add(rotuloPosicao[i]);
 			painel.add(GUI.textoPadrao(posicao[i]));
 		}
 		
-		JButton confirmar = GUI.botaoVerde(new JButton("Confirmar"));
+		JButton confirmar = GUI.botaoVerde(new JButton(bundle.getString("EscolherAssento.botao.confirmar")));
 		confirmar.setIcon(GUI.icone("ok"));
 		confirmar.setBounds(590,270,200,40);
 		

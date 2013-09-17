@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.util.ResourceBundle;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -60,8 +61,10 @@ public class EditPassageiro extends JFrame {
 	
 	private JComboBox tipoPass;
 	private JComboBox tipoTrat;
+	ResourceBundle bundle;
 		
-   public EditPassageiro(){
+   public EditPassageiro(ResourceBundle bundle){
+	  this.bundle = bundle;
       configurar();
       criarElementos();
       setSize(400, 420);
@@ -71,7 +74,7 @@ public class EditPassageiro extends JFrame {
       layout = new BorderLayout(5, 5);
       setLayout(layout);
       setVisible(true);
-      setTitle("Editar Cadastro de Passageiro");
+      setTitle(bundle.getString("EditPassageiro.title"));
    }
 	
    private void criarElementos(){
@@ -79,7 +82,7 @@ public class EditPassageiro extends JFrame {
       painelTitulo = new JPanel();
       painelTitulo.setBorder(BorderFactory.createMatteBorder(0,0,2,0,Color.BLACK));
       painelTitulo.setBackground(new Color(0x333333));
-      titulo = new JLabel("Editar passageiro selecionado");
+      titulo = new JLabel(bundle.getString("EditPassageiro.rotulo.titulo"));
       painelTitulo.add(titulo);
    	
       titulo.setBorder(BorderFactory.createEmptyBorder(10,40,10,40));
@@ -101,13 +104,13 @@ public class EditPassageiro extends JFrame {
    	
       painelFormulario.setBorder(BorderFactory.createEmptyBorder(10,10,0,10));
    	
-      rotuloCod = new JLabel("C�digo:");
-      rotuloTrat = new JLabel("Tipo de tratamento:");
-      rotuloNome = new JLabel("Nome completo:");
-      rotuloTipo = new JLabel("Tipo de passageiro:");
-      rotuloNasc = new JLabel("Data de nascimento:");
-      rotuloEmail = new JLabel("Email:");
-      rotuloCel = new JLabel("Tel. celular:");
+      rotuloCod = new JLabel(bundle.getString("EditPassageiro.rotulo.rotuloCod"));
+      rotuloTrat = new JLabel(bundle.getString("EditPassageiro.rotulo.rotuloTrat"));
+      rotuloNome = new JLabel(bundle.getString("EditPassageiro.rotulo.rotuloNome"));
+      rotuloTipo = new JLabel(bundle.getString("EditPassageiro.rotulo.rotuloTipo"));
+      rotuloNasc = new JLabel(bundle.getString("EditPassageiro.rotulo.rotuloNasc"));
+      rotuloEmail = new JLabel(bundle.getString("EditPassageiro.rotulo.rotuloEmail"));
+      rotuloCel = new JLabel(bundle.getString("EditPassageiro.rotulo.rotuloCel"));
       
       campoCod = GUI.textoPadrao(new JTextField(" ",20));;
       campoNome = GUI.textoPadrao(new JTextField(" ",20));;
@@ -123,10 +126,10 @@ public class EditPassageiro extends JFrame {
       rotuloEmail.setHorizontalAlignment(SwingConstants.RIGHT);
       rotuloCel.setHorizontalAlignment(SwingConstants.RIGHT);
       
-  		String [] sTipoPass = {"Crian�a","Adulto","Idoso"};
+        String [] sTipoPass = {bundle.getString("EditPassageiro.combo.adulto"),bundle.getString("EditPassageiro.combo.crianca"),bundle.getString("EditPassageiro.combo.idoso")};
 		tipoPass = GUI.textoPadrao(new JComboBox(sTipoPass));
 		
-		String [] sTipoTrat = {"Sr.","Sra."};
+		String [] sTipoTrat = {bundle.getString("EditPassageiro.combo.Sr"),bundle.getString("EditPassageiro.combo.Sra")};
  		tipoTrat = GUI.textoPadrao(new JComboBox(sTipoTrat));  
 	    
 		
@@ -174,7 +177,7 @@ public class EditPassageiro extends JFrame {
       painelBotoes = new JPanel(new FlowLayout(FlowLayout.RIGHT));
       botaoOK = GUI.botaoVerde(new JButton("OK"));
       botaoOK.setIcon(GUI.icone("ok"));
-      botaoCancel = GUI.botaoVermelho(new JButton("Cancelar"));
+      botaoCancel = GUI.botaoVermelho(new JButton(bundle.getString("EditPassageiro.botao.botaoCancel")));
       botaoCancel.setIcon(GUI.icone("ok"));
 		
 		painelBotoes.add(botaoOK);

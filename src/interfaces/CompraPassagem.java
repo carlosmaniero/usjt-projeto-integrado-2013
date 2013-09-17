@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
 
 public class CompraPassagem extends JFrame{
 
@@ -31,8 +32,10 @@ public class CompraPassagem extends JFrame{
 	private JLabel taxaDeEmbarque;
 	private JLabel total;
 	private JButton botao;
+	private ResourceBundle bundle;
 
-	public CompraPassagem(){
+	public CompraPassagem(ResourceBundle bundle){
+		this.bundle = bundle;
 		configurar();
 		criarElementos();
 		setSize(680,300);
@@ -41,11 +44,11 @@ public class CompraPassagem extends JFrame{
 	public void configurar(){
 		setLayout(new BorderLayout());
 		setVisible(true);
-		setTitle("Compar Passagem");
+		setTitle(bundle.getString("CompraPassagem.title"));
 	}
 	
 	public void criarElementos(){
-		// PainÃ©is
+		// Pain�is
 		JPanel formulario = new JPanel(new BorderLayout());
 		JPanel painelPassagem = new JPanel(new GridLayout(1,2,10,10));
 		JPanel painelIda = new JPanel(new GridLayout(3,2,10,10));
@@ -74,9 +77,9 @@ public class CompraPassagem extends JFrame{
 		
 		
 		// Ida:
-		JLabel labelDestino = new JLabel("Destino: ");
-		JLabel labelPartida = new JLabel("Data de Partida: ");
-		JLabel labelHoraPartida = new JLabel("Hora de Partida: ");
+		JLabel labelDestino = new JLabel(bundle.getString("CompraPassagem.rotulo.labelDestino"));
+		JLabel labelPartida = new JLabel(bundle.getString("CompraPassagem.rotulo.labelPartida"));
+		JLabel labelHoraPartida = new JLabel(bundle.getString("CompraPassagem.rotulo.labelHoraPartida"));
 		
 		destino = GUI.textoPadrao(new JComboBox());
 		partida = GUI.textoPadrao(new JComboBox());
@@ -90,11 +93,11 @@ public class CompraPassagem extends JFrame{
 		painelIda.add(horaPartida);
 		
 		// Volta:
-		JLabel labelRetorno = new JLabel("Retorno: ");
+		JLabel labelRetorno = new JLabel(bundle.getString("CompraPassagem.rotulo.labelRetorno"));
 		labelRetorno.setBorder(GUI.BORDA_VAZIA_ESQUERDA);
-		JLabel labelDataVolta = new JLabel("Dara do retorno: ");
+		JLabel labelDataVolta = new JLabel(bundle.getString("CompraPassagem.rotulo.labelDataVolta"));
 		labelDataVolta.setBorder(GUI.BORDA_VAZIA_ESQUERDA);
-		JLabel labelHoraVolta = new JLabel("Hora do retorno: ");
+		JLabel labelHoraVolta = new JLabel(bundle.getString("CompraPassagem.rotulo.labelHoraVolta"));
 		labelHoraVolta.setBorder(GUI.BORDA_VAZIA_ESQUERDA);
 		
 		retorno = GUI.textoPadrao(new JComboBox());
@@ -110,17 +113,17 @@ public class CompraPassagem extends JFrame{
 		
 		
 		// Quantidade de Assenos
-		JLabel labelAssentos = new JLabel("Quantidade de assentos disponÃ­veis: ");
+		JLabel labelAssentos = new JLabel(bundle.getString("CompraPassagem.rotulo.labelAssentos"));
 		quantidadeAssentos = new JLabel("00"); 
 		
 		painelQuantidade.add(labelAssentos);
 		painelQuantidade.add(quantidadeAssentos);
 		
 		// Tipo de passageiros
-		JLabel labelTipo = new JLabel("Quantidade de passagens: ");
-		JLabel labelAdulto = new JLabel("Adulto:");
-		JLabel labelCrianca = new JLabel("CrianÃ§a:");
-		JLabel labelBebe = new JLabel("BebÃª:");
+		JLabel labelTipo = new JLabel(bundle.getString("CompraPassagem.rotulo.labelTipo"));
+		JLabel labelAdulto = new JLabel(bundle.getString("CompraPassagem.rotulo.labelAdulto"));
+		JLabel labelCrianca = new JLabel(bundle.getString("CompraPassagem.rotulo.labelCrianca"));
+		JLabel labelBebe = new JLabel(bundle.getString("CompraPassagem.rotulo.labelBebe"));
 		adulto = GUI.textoPadrao(new JTextField(2));
 		crianca= GUI.textoPadrao(new JTextField(2));
 		bebe = GUI.textoPadrao(new JTextField(2));
@@ -134,11 +137,11 @@ public class CompraPassagem extends JFrame{
 		painelTipo.add(bebe);
 		
 		// FomulÃ¡rio resultados
-		JLabel labelValorDaPassagem = new JLabel("Valor da passagem: ");
+		JLabel labelValorDaPassagem = new JLabel(bundle.getString("CompraPassagem.rotulo.labelValorDaPassagem"));
 		valorDaPassagem = new JLabel("R$ 0,00");
-		JLabel labelTaxaDeEmbarque = new JLabel("Taxa de embarque: ");
+		JLabel labelTaxaDeEmbarque = new JLabel(bundle.getString("CompraPassagem.rotulo.labelTaxaDeEmbarque"));
 		taxaDeEmbarque = new JLabel("R$ 0,00");
-		JLabel labelTotal = new JLabel("Total: ");
+		JLabel labelTotal = new JLabel(bundle.getString("CompraPassagem.rotulo.labelTotal"));
 		total = new JLabel("R$ 0,00");
 		
 		painelResultado.add(labelValorDaPassagem);
@@ -149,13 +152,13 @@ public class CompraPassagem extends JFrame{
 		painelResultado.add(total);
 		
 		painelCalculos.add(painelResultado);
-		botao = GUI.botaoVerde(new JButton("Confirmar"));
+		botao = GUI.botaoVerde(new JButton(bundle.getString("CompraPassagem.botao.botao")));
 		
 		botao.addActionListener(new ActionListener() {
  
             public void actionPerformed(ActionEvent e)
             {
-					new Pagamento();
+					new Pagamento(bundle);
             }
       });
 		

@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.util.ResourceBundle;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -60,8 +61,10 @@ public class CadastPassageiro extends JFrame {
 	
 	private JComboBox tipoPass;
 	private JComboBox tipoTrat;
+	ResourceBundle bundle;
 		
-   public CadastPassageiro(){
+   public CadastPassageiro(ResourceBundle bundle){
+	  this.bundle = bundle;
       configurar();
       criarElementos();
       setSize(400, 420);
@@ -71,7 +74,7 @@ public class CadastPassageiro extends JFrame {
       layout = new BorderLayout(5, 5);
       setLayout(layout);
       setVisible(true);
-      setTitle("Cadastro de Passageiro");
+      setTitle(bundle.getString("CadastPassageiro.title"));
    }
 	
    private void criarElementos(){
@@ -79,7 +82,7 @@ public class CadastPassageiro extends JFrame {
       painelTitulo = new JPanel();
       painelTitulo.setBorder(BorderFactory.createMatteBorder(0,0,2,0,Color.BLACK));
       painelTitulo.setBackground(new Color(0x333333));
-      titulo = new JLabel("Cadastrar novo Passageiro");
+      titulo = new JLabel(bundle.getString("CadastPassageiro.rotulo.titulo"));
       painelTitulo.add(titulo);
    	
       titulo.setBorder(BorderFactory.createEmptyBorder(10,40,10,40));
@@ -101,13 +104,13 @@ public class CadastPassageiro extends JFrame {
    	
       painelFormulario.setBorder(BorderFactory.createEmptyBorder(10,10,0,10));
    	
-      rotuloCod = new JLabel("C�digo:");
-      rotuloTrat = new JLabel("Tipo de tratamento:");
-      rotuloNome = new JLabel("Nome completo:");
-      rotuloTipo = new JLabel("Tipo de passageiro:");
-      rotuloNasc = new JLabel("Data de nascimento:");
-      rotuloEmail = new JLabel("Email:");
-      rotuloCel = new JLabel("Tel. celular:");
+      rotuloCod = new JLabel(bundle.getString("CadastPassageiro.rotulo.rotuloCod"));
+      rotuloTrat = new JLabel(bundle.getString("CadastPassageiro.rotulo.rotuloTrat"));
+      rotuloNome = new JLabel(bundle.getString("CadastPassageiro.rotulo.rotuloNome"));
+      rotuloTipo = new JLabel(bundle.getString("CadastPassageiro.rotulo.rotuloTipo"));
+      rotuloNasc = new JLabel(bundle.getString("CadastPassageiro.rotulo.rotuloNasc"));
+      rotuloEmail = new JLabel(bundle.getString("CadastPassageiro.rotulo.rotuloEmail"));
+      rotuloCel = new JLabel(bundle.getString("CadastPassageiro.rotulo.rotuloCel"));
       
       campoCod = GUI.textoPadrao(new JTextField(" ",20));;
       campoNome = GUI.textoPadrao(new JTextField(" ",20));;
@@ -123,11 +126,11 @@ public class CadastPassageiro extends JFrame {
       rotuloEmail.setHorizontalAlignment(SwingConstants.RIGHT);
       rotuloCel.setHorizontalAlignment(SwingConstants.RIGHT);
       
-  		String [] sTipoPass = {"Crian�a","Adulto","Idoso"};
-		tipoPass = GUI.textoPadrao(new JComboBox(sTipoPass));
-		
-		String [] sTipoTrat = {"Sr.","Sra."};
- 		tipoTrat = GUI.textoPadrao(new JComboBox(sTipoTrat));  
+  	  String [] sTipoPass = {bundle.getString("CadastPassageiro.combo.adulto"),bundle.getString("CadastPassageiro.combo.crianca"),bundle.getString("CadastPassageiro.combo.idoso")};
+	  tipoPass = GUI.textoPadrao(new JComboBox(sTipoPass));
+	
+	  String [] sTipoTrat = {bundle.getString("CadastPassageiro.combo.Sr"),bundle.getString("CadastPassageiro.combo.Sra")};
+ 	  tipoTrat = GUI.textoPadrao(new JComboBox(sTipoTrat));  
 	    
 		
       campoCod.setHorizontalAlignment(SwingConstants.LEFT);
@@ -174,7 +177,7 @@ public class CadastPassageiro extends JFrame {
       painelBotoes = new JPanel(new FlowLayout(FlowLayout.RIGHT));
       botaoOK = GUI.botaoVerde(new JButton("ok"));
       botaoOK.setIcon(GUI.icone("ok"));
-      botaoCancel = GUI.botaoVermelho(new JButton("Cancelar"));
+      botaoCancel = GUI.botaoVermelho(new JButton(bundle.getString("CadastPassageiro.botao.botaoCancel")));
       botaoCancel.setIcon(GUI.icone("ok"));
 		
 		painelBotoes.add(botaoOK);

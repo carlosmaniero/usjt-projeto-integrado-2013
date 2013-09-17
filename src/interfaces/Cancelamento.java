@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.util.ResourceBundle;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -26,8 +27,10 @@ public class Cancelamento extends JFrame {
 	private JPanel painelBilhete;
 	
 	private JButton botao;
+	private ResourceBundle bundle;
 	
-	public Cancelamento(){
+	public Cancelamento(ResourceBundle bundle){
+		this.bundle = bundle;
 		configurar();
 		criarElementos();
 		setSize(500, 150);
@@ -37,7 +40,7 @@ public class Cancelamento extends JFrame {
 		layout = new BorderLayout(10,10);
 		setLayout(layout);
 		setVisible(true);
-		setTitle("Cancelamento da Passagem");
+		setTitle(bundle.getString("Cancelamento.title"));
 	}
 	
 	private void criarElementos(){
@@ -45,7 +48,7 @@ public class Cancelamento extends JFrame {
 		painelTitulo = new JPanel();
 		painelTitulo.setBorder(BorderFactory.createMatteBorder(0,0,2,0,Color.BLACK));
 		painelTitulo.setBackground(new Color(0x333333));
-		titulo = new JLabel("Digite o número do seu bilhete");
+		titulo = new JLabel(bundle.getString("Cancelamento.rotulo.titulo"));
 		painelTitulo.add(titulo);
 		
 		titulo.setBorder(GUI.BORDA_VAZIA);
@@ -57,7 +60,7 @@ public class Cancelamento extends JFrame {
 		painelBilhete = new JPanel(new BorderLayout());
 		painelFormulario.setBorder(GUI.BORDA_VAZIA);
 		
-		rotuloBilhete = new JLabel("Bilhete: ");
+		rotuloBilhete = new JLabel(bundle.getString("Cancelamento.rotulo.rotuloBilhete"));
 		rotuloBilhete.setBorder(GUI.BORDA_VAZIA);
 		
 		campoBilhete = GUI.textoPadrao(new JTextField());
