@@ -38,12 +38,13 @@ public class CompraPassagem extends JFrame{
 		this.bundle = bundle;
 		configurar();
 		criarElementos();
-		setSize(680,300);
+		setSize(680,301);
 	}
 	
 	public void configurar(){
 		setLayout(new BorderLayout());
 		setVisible(true);
+		setSize(680,300);
 		setTitle(bundle.getString("CompraPassagem.title"));
 		setLocationRelativeTo(null);
       		setResizable(false);		
