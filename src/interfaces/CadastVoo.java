@@ -67,6 +67,7 @@ public class CadastVoo extends JFrame {
       setTitle(bundle.getString("CadastVoo.title"));
       setSize(400, 420);
       setLocationRelativeTo(null);
+      setResizable(false);
    }
 	
    private void criarElementos(){
