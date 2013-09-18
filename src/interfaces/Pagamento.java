@@ -42,6 +42,8 @@ public class Pagamento extends JFrame{
 		setSize(450,350);
 		setVisible(true);
 		setTitle(bundle.getString("Pagamento.title"));
+		setLocationRelativeTo(null);
+      		setResizable(false);		
 	}
 	
 	private void criarElementos(){
