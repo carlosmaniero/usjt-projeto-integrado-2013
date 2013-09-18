@@ -46,6 +46,7 @@ public class Login extends JFrame {
 		this.bundle = bundle;
 		configurar();
 		criarElementos();
+		setSize(400, 221); 
 	}
 	
 	private void configurar(){
