@@ -69,6 +69,7 @@ public class Inicial extends JFrame{
 		this.bundle = bundle;
 		configurar();
 		criarElementos();
+		setSize(800, 601);
 	}
 	
 	private void configurar(){
