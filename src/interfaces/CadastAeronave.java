@@ -46,7 +46,7 @@ public class CadastAeronave extends JFrame {
 	  this.bundle = bundle;
       configurar();
       criarElementos();
-      
+      setSize(400, 271);
    }
 	
    private void configurar(){
