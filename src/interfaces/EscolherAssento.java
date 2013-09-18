@@ -33,6 +33,8 @@ public class EscolherAssento extends JFrame {
 		setVisible(true);
 		setTitle(bundle.getString("EscolherAssento.title"));
 		setLayout(null);
+		setLocationRelativeTo(null);
+      		setResizable(false);		
 	}
 	
 	private void criarElementos(){
