@@ -55,7 +55,7 @@ public class Login extends JFrame {
 		setSize(400, 220); 
 		setLocationRelativeTo(null);
     setResizable(false);
-		setTitle(bundle.getString("Login.title"));
+		setTitle(bundle.getString("Login.title")); 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	}
