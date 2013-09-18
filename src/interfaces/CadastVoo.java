@@ -58,6 +58,7 @@ public class CadastVoo extends JFrame {
 	  this.bundle = bundle;
       configurar();
       criarElementos();
+      setSize(400, 421);
    }
 	
    private void configurar(){
