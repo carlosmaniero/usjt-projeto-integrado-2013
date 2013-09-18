@@ -41,6 +41,8 @@ public class Transferencia extends JFrame {
 		setLayout(layout);
 		setVisible(true);
 		setTitle(bundle.getString("Transferencia.title"));
+		setLocationRelativeTo(null);
+      		setResizable(false);		
 	}
 	
 	private void criarElementos(){
