@@ -18,6 +18,8 @@ public class ConsultarVoo extends JFrame {
 		configurar();
 		criarElementos();
 		setLayout(new GridLayout());
+		setLocationRelativeTo(null);
+      		setResizable(false);		
 	}
 
 	private void configurar() {
