@@ -26,13 +26,14 @@ public class EscolherAssento extends JFrame {
 		configurar();
 		criarElementos();
 		criarAviao();
-		setSize(800,350);
+		setSize(800,351);
 	}
 
 	private void configurar(){
 		setVisible(true);
 		setTitle(bundle.getString("EscolherAssento.title"));
 		setLayout(null);
+		setSize(800,350);
 		setLocationRelativeTo(null);
       		setResizable(false);		
 	}
