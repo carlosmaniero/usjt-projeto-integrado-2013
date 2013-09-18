@@ -26,6 +26,7 @@ public class Administracao extends JFrame {
 		this.bundle = bundle;
 		configurar();
 		criarElementos();
+		setSize(600, 301);
 	}
 	
 	private void configurar(){
