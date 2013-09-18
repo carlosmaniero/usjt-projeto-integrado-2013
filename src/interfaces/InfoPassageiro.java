@@ -72,6 +72,8 @@ public class InfoPassageiro extends JFrame {
       setLayout(layout);
       setVisible(true);
       setTitle("Informações do Passageiro");
+      setLocationRelativeTo(null);
+      setResizable(false);      
    }
 	
    private void criarElementos(){
