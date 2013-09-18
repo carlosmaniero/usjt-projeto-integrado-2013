@@ -56,6 +56,7 @@ public class CadastAeronave extends JFrame {
       setTitle(bundle.getString("CadastAeronave.title"));
       setSize(400, 270);
       setLocationRelativeTo(null);
+      setResizable(false);
    }
 	
    private void criarElementos(){
