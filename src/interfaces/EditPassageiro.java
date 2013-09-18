@@ -181,7 +181,7 @@ public class EditPassageiro extends JFrame {
       botaoOK = GUI.botaoVerde(new JButton("OK"));
       botaoOK.setIcon(GUI.icone("ok"));
       botaoCancel = GUI.botaoVermelho(new JButton(bundle.getString("EditPassageiro.botao.botaoCancel")));
-      botaoCancel.setIcon(GUI.icone("ok"));
+      botaoCancel.setIcon(GUI.icone("remover"));
 		
 		painelBotoes.add(botaoOK);
 		painelBotoes.add(botaoCancel);
