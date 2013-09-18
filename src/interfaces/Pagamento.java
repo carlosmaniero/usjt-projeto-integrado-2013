@@ -36,6 +36,7 @@ public class Pagamento extends JFrame{
 		this.bundle = bundle;
 		criarElementos();
 		configurar();
+		setSize(450,351);
 	}
 	
 	private void configurar(){
