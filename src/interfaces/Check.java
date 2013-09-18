@@ -36,13 +36,14 @@ public class Check extends JFrame {
 		this.bundle = bundle;
 		configurar();
 		criarElementos();
-		setSize(500, 150);
+		setSize(500, 151);
       }
 	
 	private void configurar(){
 		layout = new BorderLayout(10,10);
 		setLayout(layout);
 		setVisible(true);
+		setSize(500, 150);
 		setTitle(bundle.getString("Check.title"));
 		setLocationRelativeTo(null);
       		setResizable(false);		
