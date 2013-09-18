@@ -45,10 +45,12 @@ public class CompraPassagem extends JFrame{
 		setLayout(new BorderLayout());
 		setVisible(true);
 		setTitle(bundle.getString("CompraPassagem.title"));
+		setLocationRelativeTo(null);
+      		setResizable(false);		
 	}
 	
 	public void criarElementos(){
-		// Painéis
+		// Painï¿½is
 		JPanel formulario = new JPanel(new BorderLayout());
 		JPanel painelPassagem = new JPanel(new GridLayout(1,2,10,10));
 		JPanel painelIda = new JPanel(new GridLayout(3,2,10,10));
