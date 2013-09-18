@@ -118,7 +118,7 @@ public class CadastAeronave extends JFrame {
       add(painelFormulario, BorderLayout.CENTER);
    	
       painelBotoes = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-      botao = GUI.botaoVerde(new JButton("CadastAeronave.botao.botao"));
+      botao = GUI.botaoVerde(new JButton(bundle.getString("CadastAeronave.botao.botao")));
       botao.setIcon(GUI.icone("ok"));
    
       painelBotoes.add(botao);
