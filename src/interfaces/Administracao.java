@@ -34,6 +34,7 @@ public class Administracao extends JFrame {
 		setTitle(bundle.getString("Administracao.title"));
 		setSize(600, 300);
 		setLocationRelativeTo(null);
+		setResizable(false);
 	}
 	
 	private void criarElementos(){
