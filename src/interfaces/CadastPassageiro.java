@@ -75,6 +75,8 @@ public class CadastPassageiro extends JFrame {
       setLayout(layout);
       setVisible(true);
       setTitle(bundle.getString("CadastPassageiro.title"));
+      setLocationRelativeTo(null);
+      setResizable(false);
    }
 	
    private void criarElementos(){
