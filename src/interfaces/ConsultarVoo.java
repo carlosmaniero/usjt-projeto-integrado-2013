@@ -18,6 +18,7 @@ public class ConsultarVoo extends JFrame {
 		configurar();
 		criarElementos();
 		setLayout(new GridLayout());
+		setSize(600, 221);
 	}
 
 	private void configurar() {
