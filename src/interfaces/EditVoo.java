@@ -56,13 +56,14 @@ public class EditVoo extends JFrame {
    public EditVoo(){
       configurar();
       criarElementos();
-      setSize(400, 420);
+      setSize(400, 421);
    }
 	
    private void configurar(){
       layout = new BorderLayout(5, 5);
       setLayout(layout);
       setVisible(true);
+      setSize(400, 420);
       setTitle("Editar Voo");
       setLocationRelativeTo(null);
       setResizable(false);      
