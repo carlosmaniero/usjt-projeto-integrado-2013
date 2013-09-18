@@ -78,11 +78,12 @@ public class Inicial extends JFrame{
 		setTitle(bundle.getString("Inicial.title"));
 		setSize(800, 600);
 		setLocationRelativeTo(null);
+      		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 	private void criarElementos(){
-		// Título
+		// Tï¿½tulo
 		painelTopo = new JPanel();
 		painelTopo.setBorder(BorderFactory.createMatteBorder(0,0,2,0,Color.BLACK));
 		painelTopo.setBackground(new Color(0x333333));
@@ -95,7 +96,7 @@ public class Inicial extends JFrame{
 		titulo.setForeground(Color.WHITE);
 		add(painelTopo, BorderLayout.NORTH);
 		
-		// Botões Topo
+		// Botï¿½es Topo
 		painelTopoBotoes = new JPanel();
 		painelTopoBotoes.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		painelTopoBotoes.setBackground(new Color(0x333333));
