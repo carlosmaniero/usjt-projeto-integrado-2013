@@ -64,6 +64,8 @@ public class EditVoo extends JFrame {
       setLayout(layout);
       setVisible(true);
       setTitle("Editar Voo");
+      setLocationRelativeTo(null);
+      setResizable(false);      
    }
 	
    private void criarElementos(){
