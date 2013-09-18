@@ -54,12 +54,13 @@ public class Login extends JFrame {
 		setVisible(true);
 		setSize(400, 220); 
 		setLocationRelativeTo(null);
+    setResizable(false);
 		setTitle(bundle.getString("Login.title"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 	private void criarElementos(){
-		// Título
+		// Tï¿½tulo
 		painelTitulo = new JPanel();
 		painelTitulo.setBorder(BorderFactory.createMatteBorder(0,0,2,0,Color.BLACK));
 		painelTitulo.setBackground(new Color(0x333333));
