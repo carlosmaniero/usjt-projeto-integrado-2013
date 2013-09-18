@@ -44,6 +44,8 @@ public class Check extends JFrame {
 		setLayout(layout);
 		setVisible(true);
 		setTitle(bundle.getString("Check.title"));
+		setLocationRelativeTo(null);
+      		setResizable(false);		
 	}
 	
 	private void criarElementos(){
