@@ -75,6 +75,8 @@ public class EditPassageiro extends JFrame {
       setLayout(layout);
       setVisible(true);
       setTitle(bundle.getString("EditPassageiro.title"));
+      setLocationRelativeTo(null);
+      setResizable(false);      
    }
 	
    private void criarElementos(){
