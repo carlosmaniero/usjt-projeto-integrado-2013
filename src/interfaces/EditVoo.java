@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.util.ResourceBundle;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -52,8 +53,11 @@ public class EditVoo extends JFrame {
    private JComboBox comboOrig;
    private JComboBox comboDest;
    private JComboBox comboSitu;
+   
+   private ResourceBundle bundle;
    		
-   public EditVoo(){
+   public EditVoo(ResourceBundle bundle){
+      this.bundle = bundle;   
       configurar();
       criarElementos();
       setSize(400, 421);
@@ -64,7 +68,7 @@ public class EditVoo extends JFrame {
       setLayout(layout);
       setVisible(true);
       setSize(400, 420);
-      setTitle("Editar Voo");
+      setTitle(bundle.getString("EditVoo.title"));
       setLocationRelativeTo(null);
       setResizable(false);      
    }
@@ -74,7 +78,7 @@ public class EditVoo extends JFrame {
       painelTitulo = new JPanel();
       painelTitulo.setBorder(BorderFactory.createMatteBorder(0,0,2,0,Color.BLACK));
       painelTitulo.setBackground(new Color(0x333333));
-      titulo = new JLabel("Editar Voo Selecionado");
+      titulo = new JLabel(bundle.getString("EditVoo.rotulo.titulo"));
       painelTitulo.add(titulo);
    	
       titulo.setBorder(BorderFactory.createEmptyBorder(10,40,10,40));
@@ -94,13 +98,13 @@ public class EditVoo extends JFrame {
    	
       painelFormulario.setBorder(BorderFactory.createEmptyBorder(10,10,0,10));
    	
-      rotuloCod   = new JLabel("Código:");
-      rotuloAero  = new JLabel("Aeronave:");
-      rotuloOrig  = new JLabel("Origem:");
-      rotuloDest  = new JLabel("Destino:");
-      rotuloEsca  = new JLabel("Escalas:");
-      rotuloHora = new JLabel("Horário:");
-      rotuloSitu   = new JLabel("Situação:");
+      rotuloCod   = new JLabel(bundle.getString("EditVoo.rotulo.rotuloCod"));
+      rotuloAero  = new JLabel(bundle.getString("EditVoo.rotulo.rotuloAero"));
+      rotuloOrig  = new JLabel(bundle.getString("EditVoo.rotulo.rotuloOrig"));
+      rotuloDest  = new JLabel(bundle.getString("EditVoo.rotulo.rotuloDest"));
+      rotuloEsca  = new JLabel(bundle.getString("EditVoo.rotulo.rotuloEsca"));
+      rotuloHora  = new JLabel(bundle.getString("EditVoo.rotulo.rotuloHora"));
+      rotuloSitu  = new JLabel(bundle.getString("EditVoo.rotulo.rotuloSitu"));
       
       campoCod = GUI.textoPadrao(new JTextField(" ",20));;
       campoEsca = GUI.textoPadrao(new JTextField(" ",20));;
@@ -123,7 +127,7 @@ public class EditVoo extends JFrame {
       String [] sComboDest = {"Guarulhos","Congonhas"};
       comboDest = GUI.textoPadrao(new JComboBox(sComboDest));
    	
-      String [] sComboSitu = {"Confirmado","Cancelado"};
+      String [] sComboSitu = {bundle.getString("EditVoo.combo.confirmado"),bundle.getString("EditVoo.combo.cancelado")};
       comboSitu = GUI.textoPadrao(new JComboBox(sComboSitu));  
     	
       campoCod.setHorizontalAlignment(SwingConstants.LEFT);
@@ -164,9 +168,9 @@ public class EditVoo extends JFrame {
       add(painelFormulario, BorderLayout.CENTER);
    	
       painelBotoes = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-      botaoOK = GUI.botaoVerde(new JButton("Salvar Alterações"));
+      botaoOK = GUI.botaoVerde(new JButton(bundle.getString("EditVoo.botao.botaoOK")));
       botaoOK.setIcon(GUI.icone("ok"));
-      botaoCancel = GUI.botaoVermelho(new JButton("Cancelar"));
+      botaoCancel = GUI.botaoVermelho(new JButton(bundle.getString("EditVoo.botao.botaoCancel")));
       botaoCancel.setIcon(GUI.icone("remover"));
    	
       painelBotoes.add(botaoOK);
