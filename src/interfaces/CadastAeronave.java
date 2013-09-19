@@ -43,7 +43,7 @@ public class CadastAeronave extends JFrame {
    private ResourceBundle bundle;
 	
    public CadastAeronave(ResourceBundle bundle){
-	  this.bundle = bundle;
+      this.bundle = bundle;
       configurar();
       criarElementos();
       setSize(400, 271);
@@ -130,3 +130,4 @@ public class CadastAeronave extends JFrame {
    }
 
 }
+
