@@ -55,7 +55,7 @@ public class CadastVoo extends JFrame {
    private ResourceBundle bundle; 
    		
    public CadastVoo(ResourceBundle bundle){
-	  this.bundle = bundle;
+      this.bundle = bundle;
       configurar();
       criarElementos();
       setSize(400, 421);
@@ -125,7 +125,7 @@ public class CadastVoo extends JFrame {
       String [] sComboDest = {"Guarulhos","Congonhas"};
       comboDest = GUI.textoPadrao(new JComboBox(sComboDest));
    	
-      String [] sComboSitu = {"Confirmado","Cancelado"};
+      String [] sComboSitu = {bundle.getString("CadastVoo.combo.confirmado"),bundle.getString("CadastVoo.combo.cancelado")};
       comboSitu = GUI.textoPadrao(new JComboBox(sComboSitu));  
     	
       campoCod.setHorizontalAlignment(SwingConstants.LEFT);
