@@ -23,7 +23,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ResourceBundle;
 
-public class Inicial extends JFrame{
+public class Inicial extends JFrame
+{
 	
 	private BorderLayout layout;
 	
@@ -47,7 +48,7 @@ public class Inicial extends JFrame{
 	
 	private JPanel painelVoos;
 	private JButton consultarVoo;
-
+	
 	private JMenuItem menuSobre;
 	private JMenuItem menuSair;
 	private JMenuItem menuCadastrarPassageiro;
@@ -64,33 +65,38 @@ public class Inicial extends JFrame{
 	private JMenuItem menuConsultarAeronave;
 	private JMenuItem menuCadastrarAeronave;
 	private ResourceBundle bundle;
-		
-	public Inicial(ResourceBundle bundle){
+	
+	public Inicial(ResourceBundle bundle)
+	{
 		this.bundle = bundle;
 		configurar();
 		criarElementos();
 		setSize(800, 601);
 	}
 	
-	private void configurar(){
+	private void configurar()
+	{
 		layout = new BorderLayout(5, 5);
 		setLayout(layout);
 		setVisible(true);
 		setTitle(bundle.getString("Inicial.title"));
 		setSize(800, 600);
 		setLocationRelativeTo(null);
-      		setResizable(false);
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
-	private void criarElementos(){
+	private void criarElementos()
+	{
 		// T�tulo
 		painelTopo = new JPanel();
-		painelTopo.setBorder(BorderFactory.createMatteBorder(0,0,2,0,Color.BLACK));
+		painelTopo.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0,
+		    Color.BLACK));
 		painelTopo.setBackground(new Color(0x333333));
 		painelTopo.setLayout(new BorderLayout());
 		
-		titulo = new JLabel(bundle.getString("Inicial.rotulo.titulo") + " {nomeUsuario}");
+		titulo = new JLabel(bundle.getString("Inicial.rotulo.titulo")
+		    + " {nomeUsuario}");
 		painelTopo.add(titulo, BorderLayout.WEST);
 		
 		titulo.setBorder(GUI.BORDA_VAZIA);
@@ -102,26 +108,30 @@ public class Inicial extends JFrame{
 		painelTopoBotoes.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		painelTopoBotoes.setBackground(new Color(0x333333));
 		
-		sair = GUI.botaoVermelho(new JButton(bundle.getString("Inicial.botao.sair")));
+		sair = GUI
+		    .botaoVermelho(new JButton(bundle.getString("Inicial.botao.sair")));
 		sair.setIcon(GUI.icone("sair"));
 		
-		sair.addActionListener(new ActionListener() {
- 
-            public void actionPerformed(ActionEvent e)
-            {
-					System.exit(0);
-            }
-        });
+		sair.addActionListener(new ActionListener()
+		{
+			
+			public void actionPerformed(ActionEvent e)
+			{
+				System.exit(0);
+			}
+		});
 		
-		administrar = GUI.botaoCinza(new JButton(bundle.getString("Inicial.botao.administrar")));
+		administrar = GUI.botaoCinza(new JButton(bundle
+		    .getString("Inicial.botao.administrar")));
 		
-		administrar.addActionListener(new ActionListener() {
- 
-            public void actionPerformed(ActionEvent e)
-            {
-					new Administracao(bundle);
-            }
-        });
+		administrar.addActionListener(new ActionListener()
+		{
+			
+			public void actionPerformed(ActionEvent e)
+			{
+				new Administracao(bundle);
+			}
+		});
 		
 		painelTopoBotoes.add(administrar);
 		painelTopoBotoes.add(sair);
@@ -129,96 +139,112 @@ public class Inicial extends JFrame{
 		painelTopo.add(painelTopoBotoes);
 		
 		// Painel de Passageiros
-		painelDeAcaoes = new JPanel(new GridLayout(3,1,10,10));
+		painelDeAcaoes = new JPanel(new GridLayout(3, 1, 10, 10));
 		painelDeAcaoes.setBorder(GUI.BORDA_VAZIA);
 		
-		cadastrarPassageiro = GUI.botaoAzul(new JButton(bundle.getString("Inicial.botao.cadastrarPassageiro")));
+		cadastrarPassageiro = GUI.botaoAzul(new JButton(bundle
+		    .getString("Inicial.botao.cadastrarPassageiro")));
 		
-		cadastrarPassageiro.addActionListener(new ActionListener() {
- 
-            public void actionPerformed(ActionEvent e)
-            {
-					new CadastPassageiro(bundle);
-            }
-        });
-		
+		cadastrarPassageiro.addActionListener(new ActionListener()
+		{
+			
+			public void actionPerformed(ActionEvent e)
+			{
+				new CadastPassageiro(bundle);
+			}
+		});
 		
 		cadastrarPassageiro.setIcon(GUI.icone("mais"));
-		consultarPassageiro = GUI.botaoAzul(new JButton(bundle.getString("Inicial.botao.consultarPassageiro")));
+		consultarPassageiro = GUI.botaoAzul(new JButton(bundle
+		    .getString("Inicial.botao.consultarPassageiro")));
 		consultarPassageiro.setIcon(GUI.icone("busca"));
-		alterarPassageiro = GUI.botaoAzul(new JButton(bundle.getString("Inicial.botao.alterarPassageiro")));
+		alterarPassageiro = GUI.botaoAzul(new JButton(bundle
+		    .getString("Inicial.botao.alterarPassageiro")));
 		alterarPassageiro.setIcon(GUI.icone("editar"));
-		alterarPassageiro.addActionListener(new ActionListener() {
- 
-            public void actionPerformed(ActionEvent e)
-            {
-					JOptionPane.showInputDialog(bundle.getString("Inicial.JOptionPane.editar"));
-					new EditPassageiro(bundle);
-            }
-        });
-		comprarPassagem = GUI.botaoAzul(new JButton(bundle.getString("Inicial.botao.comprarPassagem")));
-		comprarPassagem.addActionListener(new ActionListener() {
- 
-            public void actionPerformed(ActionEvent e)
-            {
-					new CompraPassagem(bundle);
-            }
-        });
+		alterarPassageiro.addActionListener(new ActionListener()
+		{
+			
+			public void actionPerformed(ActionEvent e)
+			{
+				JOptionPane.showInputDialog(bundle
+				    .getString("Inicial.JOptionPane.editar"));
+				new EditPassageiro(bundle);
+			}
+		});
+		comprarPassagem = GUI.botaoAzul(new JButton(bundle
+		    .getString("Inicial.botao.comprarPassagem")));
+		comprarPassagem.addActionListener(new ActionListener()
+		{
+			
+			public void actionPerformed(ActionEvent e)
+			{
+				new CompraPassagem(bundle);
+			}
+		});
 		comprarPassagem.setIcon(GUI.icone("dinheiro"));
-		cancelarPassagem = GUI.botaoAzul(new JButton(bundle.getString("Inicial.botao.cancelarPassagem")));
+		cancelarPassagem = GUI.botaoAzul(new JButton(bundle
+		    .getString("Inicial.botao.cancelarPassagem")));
 		cancelarPassagem.setIcon(GUI.icone("remover"));
 		
-		cancelarPassagem.addActionListener(new ActionListener() {
- 
-            public void actionPerformed(ActionEvent e)
-            {
-					new Cancelamento(bundle);
-            }
-      });
-		  
-		transferirPassagem = GUI.botaoAzul(new JButton(bundle.getString("Inicial.botao.transferirPassagem")));
+		cancelarPassagem.addActionListener(new ActionListener()
+		{
+			
+			public void actionPerformed(ActionEvent e)
+			{
+				new Cancelamento(bundle);
+			}
+		});
+		
+		transferirPassagem = GUI.botaoAzul(new JButton(bundle
+		    .getString("Inicial.botao.transferirPassagem")));
 		transferirPassagem.setIcon(GUI.icone("transferir"));
 		
-		transferirPassagem.addActionListener(new ActionListener() {
- 
-            public void actionPerformed(ActionEvent e)
-            {
-					new Transferencia(bundle);
-            }
-      });
+		transferirPassagem.addActionListener(new ActionListener()
+		{
+			
+			public void actionPerformed(ActionEvent e)
+			{
+				new Transferencia(bundle);
+			}
+		});
 		
-		checkInPassagem = GUI.botaoAzul(new JButton(bundle.getString("Inicial.botao.checkInPassagem")));
+		checkInPassagem = GUI.botaoAzul(new JButton(bundle
+		    .getString("Inicial.botao.checkInPassagem")));
 		checkInPassagem.setIcon(GUI.icone("check"));
 		
-		checkInPassagem.addActionListener(new ActionListener() {
- 
-            public void actionPerformed(ActionEvent e)
-            {
-					new Check(bundle);
-            }
+		checkInPassagem.addActionListener(new ActionListener()
+		{
+			
+			public void actionPerformed(ActionEvent e)
+			{
+				new Check(bundle);
+			}
 		});
 		
-		consultarVoo = GUI.botaoAzul(new JButton(bundle.getString("Inicial.botao.consultarVoo")));
+		consultarVoo = GUI.botaoAzul(new JButton(bundle
+		    .getString("Inicial.botao.consultarVoo")));
 		consultarVoo.setIcon(GUI.icone("aviao"));
-		consultarVoo.addActionListener(new ActionListener() {
- 
-            public void actionPerformed(ActionEvent e)
-            {
-					new ConsultarVoo(bundle);
-            }
+		consultarVoo.addActionListener(new ActionListener()
+		{
+			
+			public void actionPerformed(ActionEvent e)
+			{
+				new ConsultarVoo(bundle);
+			}
 		});
 		
-		painelPassageiros = new JPanel(new GridLayout(1,4,5,10));
-		painelPassageiros.setBorder(BorderFactory.createTitledBorder(GUI.BORDA_VAZIA, bundle.getString("Inicial.painel.painelPassageiros")));
+		painelPassageiros = new JPanel(new GridLayout(1, 4, 5, 10));
+		painelPassageiros.setBorder(BorderFactory.createTitledBorder(
+		    GUI.BORDA_VAZIA, bundle.getString("Inicial.painel.painelPassageiros")));
 		
 		painelPassageiros.add(cadastrarPassageiro);
-		//painelPassageiros.add(consultarPassageiro);
+		// painelPassageiros.add(consultarPassageiro);
 		painelPassageiros.add(alterarPassageiro);
 		painelPassageiros.add(new JLabel()); // Elemento vazio
 		
-		
-		painelPassagens = new JPanel(new GridLayout(1,4,5,10));
-		painelPassagens.setBorder(BorderFactory.createTitledBorder(GUI.BORDA_VAZIA, bundle.getString("Inicial.painel.painelPassagens")));
+		painelPassagens = new JPanel(new GridLayout(1, 4, 5, 10));
+		painelPassagens.setBorder(BorderFactory.createTitledBorder(GUI.BORDA_VAZIA,
+		    bundle.getString("Inicial.painel.painelPassagens")));
 		
 		painelPassagens.add(comprarPassagem);
 		painelPassagens.add(cancelarPassagem);
@@ -228,8 +254,9 @@ public class Inicial extends JFrame{
 		painelDeAcaoes.add(painelPassageiros);
 		painelDeAcaoes.add(painelPassagens);
 		
-		painelVoos = new JPanel(new GridLayout(1,4,5,10));
-		painelVoos.setBorder(BorderFactory.createTitledBorder(GUI.BORDA_VAZIA, bundle.getString("Inicial.painel.painelVoos")));
+		painelVoos = new JPanel(new GridLayout(1, 4, 5, 10));
+		painelVoos.setBorder(BorderFactory.createTitledBorder(GUI.BORDA_VAZIA,
+		    bundle.getString("Inicial.painel.painelVoos")));
 		
 		painelVoos.add(consultarVoo);
 		painelVoos.add(new JLabel()); // Elemento vazio
@@ -239,5 +266,5 @@ public class Inicial extends JFrame{
 		
 		add(painelDeAcaoes, BorderLayout.CENTER);
 	}
-
+	
 }
