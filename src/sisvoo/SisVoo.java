@@ -6,10 +6,8 @@ import java.util.ResourceBundle;
 import sisvoo.interfaces.Login;
 
 
-public class Main
+public class SisVoo
 {
-	
-	public static final int teste = 1;
 	
 	public static void main(String[] args)
 	{
@@ -17,7 +15,7 @@ public class Main
 		ResourceBundle bundle = ResourceBundle.getBundle("SistVoo", locale);
 		
 		new Login(bundle);
-		
+	
 	}
 	
 }

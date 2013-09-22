@@ -15,7 +15,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import sisvoo.Main;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -44,6 +43,7 @@ public class Login extends JFrame
 	private JButton botao;
 	private JComboBox idioma;
 	private ResourceBundle bundle;
+	private sisvoo.negocio.Login negocio;
 	
 	public Login(ResourceBundle bundle)
 	{
@@ -51,6 +51,7 @@ public class Login extends JFrame
 		configurar();
 		criarElementos();
 		setSize(400, 221);
+		negocio = new sisvoo.negocio.Login();
 	}
 	
 	private void configurar()
@@ -118,8 +119,14 @@ public class Login extends JFrame
 			
 			public void actionPerformed(ActionEvent e)
 			{
-				dispose();
-				new Inicial(bundle);
+				if(negocio.logar(campoUsuario.getText(), campoSenha.getText())){
+					dispose();
+					new Inicial(bundle, negocio.getNome());
+				}else{
+					new MostrarErro(new Exception("Login ou senha incorretos!"));
+				}
+				
+				
 			}
 		});
 		

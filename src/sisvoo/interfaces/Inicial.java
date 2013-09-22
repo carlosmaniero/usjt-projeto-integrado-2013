@@ -49,26 +49,13 @@ public class Inicial extends JFrame
 	private JPanel painelVoos;
 	private JButton consultarVoo;
 	
-	private JMenuItem menuSobre;
-	private JMenuItem menuSair;
-	private JMenuItem menuCadastrarPassageiro;
-	private JMenuItem menuConsultarPassageiro;
-	private JMenuItem menuAlterarPassageiro;
-	private JMenuItem menuComprarPassagens;
-	private JMenuItem menuCancelarPassagem;
-	private JMenuItem menuTransferirPassagem;
-	private JMenuItem menuCheckInPassagem;
-	private JMenuItem menuCadastrarVoo;
-	private JMenuItem menuConsultarVoo;
-	private JMenuItem menuAlterarVoo;
-	private JMenuItem menuAlterarAeronave;
-	private JMenuItem menuConsultarAeronave;
-	private JMenuItem menuCadastrarAeronave;
 	private ResourceBundle bundle;
+	private String nome;
 	
-	public Inicial(ResourceBundle bundle)
+	public Inicial(ResourceBundle bundle, String nome)
 	{
 		this.bundle = bundle;
+		this.nome = nome;
 		configurar();
 		criarElementos();
 		setSize(800, 601);
@@ -88,28 +75,26 @@ public class Inicial extends JFrame
 	
 	private void criarElementos()
 	{
-		// Tï¿½tulo
+		// Título
 		painelTopo = new JPanel();
 		painelTopo.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0,
 		    Color.BLACK));
 		painelTopo.setBackground(new Color(0x333333));
 		painelTopo.setLayout(new BorderLayout());
 		
-		titulo = new JLabel(bundle.getString("Inicial.rotulo.titulo")
-		    + " {nomeUsuario}");
+		titulo = new JLabel(bundle.getString("Inicial.rotulo.titulo") + " " + nome);
 		painelTopo.add(titulo, BorderLayout.WEST);
 		
 		titulo.setBorder(GUI.BORDA_VAZIA);
 		titulo.setForeground(Color.WHITE);
 		add(painelTopo, BorderLayout.NORTH);
 		
-		// Botï¿½es Topo
+		// Botões Topo
 		painelTopoBotoes = new JPanel();
 		painelTopoBotoes.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		painelTopoBotoes.setBackground(new Color(0x333333));
 		
-		sair = GUI
-		    .botaoVermelho(new JButton(bundle.getString("Inicial.botao.sair")));
+		sair = GUI.botaoVermelho(new JButton(bundle.getString("Inicial.botao.sair")));
 		sair.setIcon(GUI.icone("sair"));
 		
 		sair.addActionListener(new ActionListener()
