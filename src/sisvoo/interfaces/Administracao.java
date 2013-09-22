@@ -154,7 +154,7 @@ public class Administracao extends JFrame
 			
 			public void actionPerformed(ActionEvent e)
 			{
-				new EditAeronave(bundle);
+				//new EditAeronave(bundle);
 			}
 		});
 		

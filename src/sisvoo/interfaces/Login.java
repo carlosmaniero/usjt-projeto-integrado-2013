@@ -43,7 +43,7 @@ public class Login extends JFrame
 	private JButton botao;
 	private JComboBox idioma;
 	private ResourceBundle bundle;
-	private sisvoo.negocio.Login negocio;
+	private sisvoo.dados.Login negocio;
 	
 	public Login(ResourceBundle bundle)
 	{
@@ -51,7 +51,7 @@ public class Login extends JFrame
 		configurar();
 		criarElementos();
 		setSize(400, 221);
-		negocio = new sisvoo.negocio.Login();
+		negocio = new sisvoo.dados.Login();
 	}
 	
 	private void configurar()

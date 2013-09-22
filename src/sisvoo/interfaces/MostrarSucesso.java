@@ -13,30 +13,12 @@ import javax.swing.WindowConstants;
 
 import sisvoo.utilidades.Evento;
 
-public class MostrarErro extends JDialog
+public class MostrarSucesso extends JDialog
 {
 	
-	public MostrarErro(Exception e, final Evento evento)
-	{
-		e.printStackTrace(System.out);
-		start(e.getMessage(), evento);
-	}
 	
-	public MostrarErro(Exception e)
-	{
-		e.printStackTrace(System.out);
-		start(e.getMessage(), new Evento()
-		{
-			
-			@Override
-			public void executar()
-			{
-				// Nada
-			}
-		});
-	}
 	
-	public MostrarErro(String e)
+	public MostrarSucesso(String e)
   {
 	  start(e, new Evento()
 		{
@@ -49,7 +31,7 @@ public class MostrarErro extends JDialog
 		});
   }
 	
-	public MostrarErro(String e, Evento evento){
+	public MostrarSucesso(String e, Evento evento){
 		start(e, evento);
 	}
 
@@ -57,13 +39,12 @@ public class MostrarErro extends JDialog
 	{
 		setSize(400, 200);
 		setLocationRelativeTo(null);
-		setBackground(new Color(0x993333));
 		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		
 		JLabel label = new JLabel(
 		    "<html><span style='color: #FFFFFF; white-space: normal'>"
 		        + e + "</span></html>");
-		label.setIcon(GUI.icone("atencao"));
+		label.setIcon(GUI.icone("ok"));
 		label.setBounds(0, 0, 400, 120);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		
@@ -81,7 +62,7 @@ public class MostrarErro extends JDialog
 		});
 		
 		JPanel painel = new JPanel(null);
-		painel.setBackground(new Color(0x993333));
+		painel.setBackground(new Color(0x339933));
 		painel.add(label);
 		painel.add(botao);
 		

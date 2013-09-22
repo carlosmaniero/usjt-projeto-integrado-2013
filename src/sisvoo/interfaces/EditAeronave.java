@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ResourceBundle;
 
 import javax.swing.BorderFactory;
@@ -16,6 +18,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import sisvoo.dados.Aeronave;
+import sisvoo.utilidades.Evento;
+
 public class EditAeronave extends JFrame
 {
 	
@@ -24,11 +29,11 @@ public class EditAeronave extends JFrame
 	
 	private JLabel rotuloCod;
 	private JLabel rotuloTipo;
-	private JLabel rotuloAss;
+	private JLabel rotuloFileiras;
 	
-	private JTextField campoCod;
+	private JTextField campoCodigo;
 	private JTextField campoTipo;
-	private JTextField campoAss;
+	private JTextField campoFileiras;
 	
 	private JPanel painelTitulo;
 	
@@ -39,17 +44,30 @@ public class EditAeronave extends JFrame
 	private JPanel painelFormulario;
 	private JPanel painelBotoes;
 	
-	private JButton botaoOK;
-	private JButton botaoCancel;
+	private JButton botao;
 	
 	private ResourceBundle bundle;
+	private JLabel rotuloBancos;
+	private JTextField campoBancos;
+	private JPanel painelBancos;
+	private Aeronave aeronave;
 	
-	public EditAeronave(ResourceBundle bundle)
+	public EditAeronave(ResourceBundle bundle, String codigo)
 	{
 		this.bundle = bundle;
+		
+		aeronave = new Aeronave();
+		aeronave.setCodigo(codigo);
+		try {
+	    aeronave.selectionar();
+    } catch (Exception e) {
+	    new MostrarErro(e);
+    }
+		
 		configurar();
 		criarElementos();
-		setSize(400, 271);
+		configuraAcoes();
+		setSize(500, 301);
 	}
 	
 	private void configurar()
@@ -58,88 +76,139 @@ public class EditAeronave extends JFrame
 		setLayout(layout);
 		setVisible(true);
 		setTitle(bundle.getString("EditAeronave.title"));
-		setSize(400, 270);
+		setSize(500, 300);
 		setLocationRelativeTo(null);
 		setResizable(false);
 	}
 	
 	private void criarElementos()
 	{
-		// Titulo
-		painelTitulo = new JPanel();
-		painelTitulo.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0,
-		    Color.BLACK));
-		painelTitulo.setBackground(new Color(0x333333));
-		titulo = new JLabel(bundle.getString("EditAeronave.rotulo.titulo"));
-		painelTitulo.add(titulo);
+	// Titulo
+			painelTitulo = new JPanel();
+			painelTitulo.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0,
+			    Color.BLACK));
+			painelTitulo.setBackground(new Color(0x333333));
+			titulo = new JLabel(bundle.getString("CadastAeronave.rotulo.titulo"));
+			painelTitulo.add(titulo);
+			
+			titulo.setBorder(BorderFactory.createEmptyBorder(10, 40, 10, 40));
+			titulo.setForeground(Color.WHITE);
+			add(painelTitulo, BorderLayout.NORTH);
+			
+			// Paineis
+			painelFormulario = new JPanel(new GridLayout(4, 1));
+			
+			painelCod = new JPanel(new BorderLayout());
+			painelTipo = new JPanel(new BorderLayout());
+			painelAss = new JPanel(new BorderLayout());
+			painelBancos = new JPanel(new BorderLayout());
+			
+			painelFormulario.setBorder(BorderFactory.createEmptyBorder(10, 10, 0, 10));
+			
+			rotuloCod = new JLabel(bundle.getString("EditAeronave.rotulo.rotuloCod"));
+			rotuloTipo = new JLabel(
+			    bundle.getString("EditAeronave.rotulo.rotuloTipo"));
+			rotuloFileiras = new JLabel(bundle.getString("EditAeronave.rotulo.rotuloFileiras"));
+			rotuloBancos = new JLabel(bundle.getString("EditAeronave.rotulo.rotuloBancos"));
+			
+			campoCodigo = GUI.textoPadrao(new JTextField(aeronave.getCodigo(), 5));
+			campoTipo = GUI.textoPadrao(new JTextField(aeronave.getTipo(), 20));
+			campoFileiras = GUI.textoPadrao(new JTextField("" + aeronave.getFileiras(), 20));
+			campoBancos = GUI.textoPadrao(new JTextField("" + aeronave.getBancos(), 20));
+			
+			rotuloCod.setHorizontalAlignment(SwingConstants.RIGHT);
+			rotuloTipo.setHorizontalAlignment(SwingConstants.RIGHT);
+			rotuloFileiras.setHorizontalAlignment(SwingConstants.RIGHT);
+			rotuloBancos.setHorizontalAlignment(SwingConstants.RIGHT);
+			
+			campoCodigo.setHorizontalAlignment(SwingConstants.LEFT);
+			campoCodigo.setEditable(false);
+			campoTipo.setHorizontalAlignment(SwingConstants.LEFT);
+			campoFileiras.setHorizontalAlignment(SwingConstants.LEFT);
+			campoBancos.setHorizontalAlignment(SwingConstants.LEFT);
+			
+			painelCod.setBorder(BorderFactory.createEmptyBorder(0, 0, 5, 0));
+			painelTipo.setBorder(BorderFactory.createEmptyBorder(0, 0, 5, 0));
+			painelAss.setBorder(BorderFactory.createEmptyBorder(0, 0, 5, 0));
+			
+			painelCod.add(rotuloCod, BorderLayout.WEST);
+			painelCod.add(campoCodigo, BorderLayout.EAST);
+			painelTipo.add(rotuloTipo, BorderLayout.WEST);
+			painelTipo.add(campoTipo, BorderLayout.EAST);
+			painelAss.add(rotuloFileiras, BorderLayout.WEST);
+			painelAss.add(campoFileiras, BorderLayout.EAST);
+			painelBancos.add(rotuloBancos, BorderLayout.WEST);
+			painelBancos.add(campoBancos, BorderLayout.EAST);
+			
+			painelFormulario.add(painelCod);
+			painelFormulario.add(painelTipo);
+			painelFormulario.add(painelAss);
+			painelFormulario.add(painelBancos);
+			
+			add(painelFormulario, BorderLayout.CENTER);
+			
+			painelBotoes = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+			botao = GUI.botaoVerde(new JButton(bundle
+			    .getString("CadastAeronave.botao.botao")));
+			botao.setIcon(GUI.icone("ok"));
+			
+			painelBotoes.add(botao);
+			
+			painelBotoes.setBorder(BorderFactory.createEmptyBorder(0, 40, 10, 40));
+			
+			add(painelBotoes, BorderLayout.SOUTH);
 		
-		titulo.setBorder(BorderFactory.createEmptyBorder(10, 40, 10, 40));
-		titulo.setForeground(Color.WHITE);
-		add(painelTitulo, BorderLayout.NORTH);
-		
-		// Paineis
-		painelFormulario = new JPanel(new GridLayout(3, 1));
-		
-		painelCod = new JPanel(new BorderLayout());
-		painelTipo = new JPanel(new BorderLayout());
-		painelAss = new JPanel(new BorderLayout());
-		
-		painelFormulario.setBorder(BorderFactory.createEmptyBorder(10, 10, 0, 10));
-		
-		rotuloCod = new JLabel(bundle.getString("EditAeronave.rotulo.rotuloCod"));
-		rotuloTipo = new JLabel(bundle.getString("EditAeronave.rotulo.rotuloTipo"));
-		rotuloAss = new JLabel(bundle.getString("EditAeronave.rotulo.rotuloAss"));
-		
-		campoCod = GUI.textoPadrao(new JTextField("", 20));
-		;
-		campoTipo = GUI.textoPadrao(new JTextField("", 20));
-		;
-		campoAss = GUI.textoPadrao(new JTextField("", 20));
-		;
-		
-		rotuloCod.setHorizontalAlignment(SwingConstants.RIGHT);
-		rotuloTipo.setHorizontalAlignment(SwingConstants.RIGHT);
-		rotuloAss.setHorizontalAlignment(SwingConstants.RIGHT);
-		
-		campoCod.setHorizontalAlignment(SwingConstants.LEFT);
-		campoCod.setEditable(false);
-		campoTipo.setHorizontalAlignment(SwingConstants.LEFT);
-		campoTipo.setEditable(false);
-		campoAss.setHorizontalAlignment(SwingConstants.LEFT);
-		campoAss.setEditable(false);
-		
-		painelCod.setBorder(BorderFactory.createEmptyBorder(0, 0, 5, 0));
-		painelTipo.setBorder(BorderFactory.createEmptyBorder(0, 0, 5, 0));
-		painelAss.setBorder(BorderFactory.createEmptyBorder(0, 0, 5, 0));
-		
-		painelCod.add(rotuloCod, BorderLayout.WEST);
-		painelCod.add(campoCod, BorderLayout.EAST);
-		painelTipo.add(rotuloTipo, BorderLayout.WEST);
-		painelTipo.add(campoTipo, BorderLayout.EAST);
-		painelAss.add(rotuloAss, BorderLayout.WEST);
-		painelAss.add(campoAss, BorderLayout.EAST);
-		
-		painelFormulario.add(painelCod);
-		painelFormulario.add(painelTipo);
-		painelFormulario.add(painelAss);
-		
-		add(painelFormulario, BorderLayout.CENTER);
-		
-		painelBotoes = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		botaoOK = GUI.botaoVerde(new JButton(bundle
-		    .getString("EditAeronave.botao.botaoOK")));
-		botaoOK.setIcon(GUI.icone("ok"));
-		botaoCancel = GUI.botaoVermelho(new JButton(bundle
-		    .getString("EditAeronave.botao.botaoCancel")));
-		botaoCancel.setIcon(GUI.icone("remover"));
-		
-		painelBotoes.add(botaoOK);
-		painelBotoes.add(botaoCancel);
-		
-		painelBotoes.setBorder(BorderFactory.createEmptyBorder(0, 40, 10, 5));
-		
-		add(painelBotoes, BorderLayout.SOUTH);
-		
+	}
+	
+	private void configuraAcoes()
+	{
+		botao.addActionListener(new ActionListener()
+		{
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0)
+			{
+				try{
+					aeronave.setBancos(Integer.parseInt(campoBancos.getText()));
+					aeronave.setFileiras(Integer.parseInt(campoFileiras.getText()));
+				}catch(Exception e){
+					new MostrarErro("Bancos e fileiras devem ser do tipo numérico.");
+					return;
+				}
+				
+				if(campoCodigo.getText().length() != 5){
+					new MostrarErro("Digite um código com 5 caracteres.");
+					return;
+				}
+				
+				if(campoTipo.getText().length() < 3){
+					new MostrarErro("O tipo da aeronave deve conter no mínimo 3 caracteres.");
+					return;
+				}
+				
+				aeronave.setCodigo(campoCodigo.getText());
+				aeronave.setTipo(campoTipo.getText());
+				
+				try {
+	        aeronave.altera();
+	        
+	        new MostrarSucesso("Editada com sucesso!", new Evento()
+					{
+						
+						@Override
+						public void executar()
+						{
+							dispose();
+							new ConsultarAeronave(bundle);
+						}
+					});
+        } catch (Exception e) {
+	        new MostrarErro(e);
+        }
+				
+				
+			}
+		});
 	}
 	
 }

@@ -16,6 +16,7 @@ public class Arquivo
 		try{
 			this.filename = getClass().getResource(filename).getPath();
 		}catch(Exception e){
+			System.out.print(e.getStackTrace());
 			throw(new Exception("Arquivo " + filename + "não encontrado"));
 		}
 	}
