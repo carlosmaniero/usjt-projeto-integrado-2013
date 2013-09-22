@@ -99,9 +99,7 @@ public class CadastAeronave extends JFrame
 		rotuloAss.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		campoCod.setHorizontalAlignment(SwingConstants.LEFT);
-		campoCod.setEditable(false);
 		campoTipo.setHorizontalAlignment(SwingConstants.LEFT);
-		campoTipo.setEditable(false);
 		campoAss.setHorizontalAlignment(SwingConstants.LEFT);
 		campoAss.setEditable(false);
 		
