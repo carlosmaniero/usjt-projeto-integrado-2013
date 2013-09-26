@@ -1,4 +1,4 @@
-package sisvoo.utilidades;
+package sisvoo.bibliotecas;
 
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -10,11 +10,11 @@ import com.mysql.jdbc.Statement;
 public class BancoDeDados
 {
 	
-	private Configuracoes config;
+	private ConfiguracoesBancoDeDados config;
 	private static Connection conexao;
 	private int numeroLinhas;
 	
-	public BancoDeDados(Configuracoes config)
+	public BancoDeDados(ConfiguracoesBancoDeDados config)
   {
 		this.config = config;
   }
@@ -22,7 +22,7 @@ public class BancoDeDados
 	public BancoDeDados()
   {
 	  try {
-	    config = new Configuracoes();
+	    config = new ConfiguracoesBancoDeDados();
     } catch (Exception e) {
 	    e.printStackTrace();
 	    System.exit(0);

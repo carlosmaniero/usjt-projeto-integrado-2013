@@ -18,9 +18,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import sisvoo.bibliotecas.BancoDeDados;
+import sisvoo.bibliotecas.Evento;
 import sisvoo.dados.Aeronave;
-import sisvoo.utilidades.BancoDeDados;
-import sisvoo.utilidades.Evento;
 
 public class CadastAeronave extends JFrame
 {

@@ -1,4 +1,4 @@
-package sisvoo.utilidades;
+package sisvoo.bibliotecas;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;

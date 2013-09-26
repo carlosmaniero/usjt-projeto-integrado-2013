@@ -1,15 +1,15 @@
-package sisvoo.utilidades;
+package sisvoo.bibliotecas;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.Properties;
 
-public class Configuracoes extends Properties
+public class ConfiguracoesBancoDeDados extends Properties
 {
 	
 	private String filename = getClass().getResource("/configuracao.properties").getPath();
 	
-	public Configuracoes() throws Exception
+	public ConfiguracoesBancoDeDados() throws Exception
   {
 	  load();
   }

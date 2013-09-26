@@ -2,9 +2,9 @@ package sisvoo.negocio;
 
 import java.util.ArrayList;
 
+import sisvoo.bibliotecas.Arquivo;
+import sisvoo.bibliotecas.MD5;
 import sisvoo.interfaces.MostrarErro;
-import sisvoo.utilidades.Arquivo;
-import sisvoo.utilidades.MD5;
 
 public class Login
 {
@@ -30,7 +30,7 @@ public class Login
 		
 	}
 	
-	public boolean logar(String login, String senha)
+	public void logar(String login, String senha) throws Exception
 	{
 		int esq = 0;
 		int dir = logins.size() - 1;
@@ -38,6 +38,7 @@ public class Login
 		login = new MD5(login).toString();
 		senha = new MD5(senha).toString();
 		
+		// Busca binária
 		while (esq <= dir) {
 			valorMeio = esq + ((dir - esq) / 2);
 			if (logins.get(valorMeio)[0].compareTo(login) < 0) {
@@ -47,11 +48,11 @@ public class Login
 			} else {
 				if(logins.get(valorMeio)[1].equals(senha)){
 					logado = logins.get(valorMeio); 
-					return true;
 				}
 			}
 		}
-		return false;
+		
+		throw new Exception("Login ou senha incorretos");
 	}
 	
 	public String getNome(){

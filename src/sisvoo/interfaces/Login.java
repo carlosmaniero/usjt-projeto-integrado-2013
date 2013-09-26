@@ -114,18 +114,24 @@ public class Login extends JFrame
 		botao = GUI.botaoVerde(new JButton(bundle.getString("Login.botao.botao")));
 		botao.setIcon(GUI.icone("login"));
 		
+		/*
+		 * Ação do botão
+		 */
 		botao.addActionListener(new ActionListener()
 		{
 			
 			public void actionPerformed(ActionEvent e)
 			{
-				if(negocio.logar(campoUsuario.getText(), campoSenha.getText())){
+				
+				try{
+					
+					negocio.logar(campoUsuario.getText(), campoSenha.getText());
 					dispose();
 					new Inicial(bundle, negocio.getNome());
-				}else{
-					new MostrarErro(new Exception("Login ou senha incorretos!"));
+					
+				}catch(Exception erro){
+					new MostrarErro(erro);
 				}
-				
 				
 			}
 		});

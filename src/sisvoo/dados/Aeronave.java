@@ -3,8 +3,8 @@ package sisvoo.dados;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import sisvoo.bibliotecas.BancoDeDados;
 import sisvoo.interfaces.MostrarErro;
-import sisvoo.utilidades.BancoDeDados;
 
 public class Aeronave
 {

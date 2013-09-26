@@ -2,9 +2,9 @@ package sisvoo.dados;
 
 import java.util.ArrayList;
 
+import sisvoo.bibliotecas.Arquivo;
+import sisvoo.bibliotecas.MD5;
 import sisvoo.interfaces.MostrarErro;
-import sisvoo.utilidades.Arquivo;
-import sisvoo.utilidades.MD5;
 
 public class Login
 {

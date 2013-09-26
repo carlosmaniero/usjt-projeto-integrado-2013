@@ -18,8 +18,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import sisvoo.bibliotecas.Evento;
 import sisvoo.dados.Aeronave;
-import sisvoo.utilidades.Evento;
 
 public class EditAeronave extends JFrame
 {

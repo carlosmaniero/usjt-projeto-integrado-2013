@@ -11,8 +11,8 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
+import sisvoo.bibliotecas.Evento;
 import sisvoo.dados.Aeronave;
-import sisvoo.utilidades.Evento;
 
 public class ConsultarAeronave extends JFrame
 {

@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 
-import sisvoo.utilidades.Evento;
+import sisvoo.bibliotecas.Evento;
 
 public class MostrarErro extends JDialog
 {

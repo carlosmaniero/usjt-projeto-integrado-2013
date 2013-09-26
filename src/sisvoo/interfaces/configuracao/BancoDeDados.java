@@ -15,11 +15,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import sisvoo.bibliotecas.ConfiguracoesBancoDeDados;
+import sisvoo.bibliotecas.Evento;
 import sisvoo.dados.Aeronave;
 import sisvoo.interfaces.GUI;
 import sisvoo.interfaces.MostrarErro;
-import sisvoo.utilidades.Configuracoes;
-import sisvoo.utilidades.Evento;
 
 public class BancoDeDados extends JFrame
 {
@@ -29,20 +29,20 @@ public class BancoDeDados extends JFrame
 	private JPanel painelFormulario;
 	
 	private JButton botao;
-	private Configuracoes config;
+	private ConfiguracoesBancoDeDados config;
 	private JTextField host;
 	private JTextField usuario;
 	private JTextField senha;
 	private JTextField nome;
-	private sisvoo.utilidades.BancoDeDados db;
+	private sisvoo.bibliotecas.BancoDeDados db;
 	private Evento fim;
 	
 	
-	public BancoDeDados(Configuracoes config, Evento fim)
+	public BancoDeDados(ConfiguracoesBancoDeDados config, Evento fim)
 	{
 		this.config = config;
 		this.fim = fim;
-		db = new sisvoo.utilidades.BancoDeDados(config);
+		db = new sisvoo.bibliotecas.BancoDeDados(config);
 		configurar();
 		criarElementos();
 		setSize(400, 271);

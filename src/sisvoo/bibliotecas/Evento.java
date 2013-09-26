@@ -1,4 +1,4 @@
-package sisvoo.utilidades;
+package sisvoo.bibliotecas;
 
 public abstract class Evento
 {

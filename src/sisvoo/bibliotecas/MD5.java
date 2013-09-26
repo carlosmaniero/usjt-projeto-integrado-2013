@@ -1,4 +1,4 @@
-package sisvoo.utilidades;
+package sisvoo.bibliotecas;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
