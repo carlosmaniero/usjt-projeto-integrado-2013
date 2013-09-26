@@ -44,7 +44,7 @@ public class BancoDeDados
 	    }
 			
 			try {
-		    conexao = (Connection) DriverManager.getConnection("jdbc:mysql://" + config.getDbHost() + "/" + config.getDbNome(),"root","");
+		    conexao = (Connection) DriverManager.getConnection("jdbc:mysql://" + config.getDbHost() + "/" + config.getDbNome(), config.getDbUsuario(),config.getDbSenha());
 	    } catch (SQLException e) {
 	    	throw(new Exception("Não foi possível conectar com o banco de dados"));
 	    }  
