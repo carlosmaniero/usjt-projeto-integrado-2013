@@ -2,8 +2,9 @@ package sisvoo.interfaces;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ResourceBundle;
 
 import javax.swing.BorderFactory;
@@ -12,7 +13,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
+
+import sisvoo.bibliotecas.Evento;
 
 public class CancelAeronave extends JFrame
 {
@@ -77,6 +79,32 @@ public class CancelAeronave extends JFrame
 		
 		botao = GUI.botaoVerde(new JButton("OK"));
 		botao.setIcon(GUI.icone("ok"));
+		
+		botao.addActionListener(new ActionListener()
+		{
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0)
+			{
+				sisvoo.dados.Aeronave dados = new sisvoo.dados.Aeronave();
+				dados.setCodigo(campoCodVoo.getText());
+				try {
+	        dados.remove();
+	        new MostrarSucesso("Aeronave deletada com sucesso!", new Evento()
+					{
+						
+						@Override
+						public void executar()
+						{
+							dispose();
+						}
+					});
+        } catch (Exception e) {
+	        new MostrarErro(e);
+        }
+				
+			}
+		});
 		
 		painelCodVoo.add(rotuloCodVoo, BorderLayout.WEST);
 		painelCodVoo.add(campoCodVoo, BorderLayout.CENTER);

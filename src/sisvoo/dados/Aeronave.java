@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import sisvoo.bibliotecas.BancoDeDados;
-import sisvoo.interfaces.MostrarErro;
 
 public class Aeronave
 {
@@ -33,6 +32,11 @@ public class Aeronave
 	{
 		db.alterar("UPDATE aeronave SET tipo='" + tipo + "', fileiras=" + fileiras
 		    + ", bancos=" + bancos + " where codigo='" + codigo + "'");
+	}
+	
+	public void remove() throws Exception
+	{
+		db.alterar("DELETE FROM aeronave WHERE codigo='" +  codigo + "'");
 	}
 	
 	public void selecionarTodos() throws Exception
