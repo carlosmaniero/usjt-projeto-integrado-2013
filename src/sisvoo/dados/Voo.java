@@ -98,7 +98,7 @@ public class Voo
 		return numeroLinhas;
 	}
 	
-	// CÓDIGO   
+	// CODIGO   
    public String getCodigo()
 	{
 		return codigo;
@@ -164,7 +164,7 @@ public class Voo
 		this.hora = hora;
 	}
   
-   // SITUAÇÃO
+   // SITUACAO
 	public String getSituacao()
 	{
 		return situacao;

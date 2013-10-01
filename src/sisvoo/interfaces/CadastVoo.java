@@ -16,6 +16,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import sisvoo.bibliotecas.Evento;
+import sisvoo.dados.Aeronave;
+
 public class CadastVoo extends JFrame
 {
 	
@@ -188,7 +191,59 @@ public class CadastVoo extends JFrame
 		painelBotoes.setBorder(BorderFactory.createEmptyBorder(0, 40, 10, 5));
 		
 		add(painelBotoes, BorderLayout.SOUTH);
+      
+      }
 		
+      	private void configuraAcoes()
+	{
+		botao.addActionListener(new ActionListener()
+		{
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0)
+			{
+				try{
+					aeronave.setBancos(Integer.parseInt(campoBancos.getText()));
+					aeronave.setFileiras(Integer.parseInt(campoFileiras.getText()));
+				}catch(Exception e){
+					new MostrarErro("Bancos e fileiras devem ser do tipo numérico.");
+					return;
+				}
+				
+				if(campoCodigo.getText().length() != 5){
+					new MostrarErro("Digite um código com 5 caracteres.");
+					return;
+				}
+				
+				if(campoTipo.getText().length() < 3){
+					new MostrarErro("O tipo da aeronave deve conter no mínimo 3 caracteres.");
+					return;
+				}
+				
+				aeronave.setCodigo(campoCodigo.getText());
+				aeronave.setTipo(campoTipo.getText());
+				
+				try {
+	        aeronave.criar();
+	        
+	        new MostrarSucesso("Aeronave criada com sucesso!", new Evento()
+					{
+						
+						@Override
+						public void executar()
+						{
+							dispose();
+						}
+					});
+        } catch (Exception e) {
+	        new MostrarErro(e);
+        }
+				
+				
+			}
+		});
+	}
+      
 	}
 	
 }
