@@ -14,7 +14,6 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -67,6 +66,7 @@ public class CadastVoo extends JFrame
       this.bundle = bundle;
       configurar();
       criarElementos();
+      configuraAcoes();
       setSize(400, 421);
    }
 	
@@ -214,22 +214,29 @@ public class CadastVoo extends JFrame
                   }
                
                   if(campoEsca.getText().length() < 3){
-                     new MostrarErro("O tipo da aeronave deve conter no mínimo 3 caracteres.");
+                     new MostrarErro("O campo escala deve conter no mínimo 3 caracteres.");
                      return;
                   }
                
                   if(campoHora.getText().length() < 3){
-                     new MostrarErro("O tipo da aeronave deve conter no mínimo 5 caracteres.");
+                     new MostrarErro("O campo hora deve ser no formato '00:00'.");
                      return;
-                  }                  
-                                 
+                  }
+                  
+                  String cbAeronave = comboAero.getSelectedItem().toString();
+                  String cbOrigem = comboOrig.getSelectedItem().toString();
+                  String cbDestino = comboDest.getSelectedItem().toString();
+                  String cbSituacao = comboSitu.getSelectedItem().toString();
+                  
+                  System.out.println(cbAeronave + ", " + cbOrigem + ", " +  cbDestino + ", " +  cbSituacao + ", " );
+                                                   
                   voo.setCodigo(campoCod.getText());
-                  voo.setAeronave(comboAero.getSelectedItem().toString());
-                  voo.setOrigem(comboOrig.getSelectedItem().toString());
-                  voo.setDestino(comboDest.getSelectedItem().toString());
+                  voo.setAeronave(cbAeronave);
+                  voo.setOrigem(cbOrigem);
+                  voo.setDestino(cbDestino);
                   voo.setEscala(campoEsca.getText());
                   voo.setHora(campoHora.getText());
-                  voo.setSituacao(comboSitu.getSelectedItem().toString());
+                  voo.setSituacao(cbSituacao);
                
                   try {
                      voo.criar();

@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import sisvoo.bibliotecas.ConfiguracoesBancoDeDados;
 import sisvoo.bibliotecas.Evento;
 import sisvoo.dados.Aeronave;
+import sisvoo.dados.Voo;
 import sisvoo.interfaces.GUI;
 import sisvoo.interfaces.MostrarErro;
 
@@ -136,6 +137,7 @@ public class BancoDeDados extends JFrame
 	private void criarTabelas() throws Exception
 	{
 		db.alterar(Aeronave.SQLCriacao);
+		db.alterar(Voo.SQLCriacao);      
 	}
 
 	
