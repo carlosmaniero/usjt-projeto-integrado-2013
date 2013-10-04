@@ -94,7 +94,7 @@ public class Administracao extends JFrame
 			
 			public void actionPerformed(ActionEvent e)
 			{
-				new EditVoo(bundle);
+			//	new EditVoo(bundle);
 			}
 		});
 		
