@@ -30,12 +30,15 @@ public class Voo
 	
 	public void criar() throws Exception
 	{
-		db.alterar("INSERT INTO voo VALUES ('" + codigo + "','" + aeronave + "','" + origem + "','" + destino + "','" + escala + "','" + hora + "' , '" + situacao + "'");
+		db.alterar("INSERT INTO voo VALUES ('" + codigo + "','" + aeronave + "','" + origem + "','" + destino + "','"
+			 + escala + "','" + hora + "','" + situacao + "')");
 	}
 	
 	public void altera() throws Exception
 	{
-		db.alterar("UPDATE INTO voo VALUES ('" + codigo + "','" + aeronave + "','" + origem + "','" + destino + "','" + escala + "','" + hora + "' , '" + situacao + "'");
+		db.alterar("UPDATE voo SET aeronave='" + aeronave + "', origem='"
+			 + origem + "', destino='" + destino + "', escala='" + escala + "', hora='" + hora + "', situacao='" + situacao +
+			 "' where codigo='" + codigo + "'");
 	}
 	
 	public void remove() throws Exception

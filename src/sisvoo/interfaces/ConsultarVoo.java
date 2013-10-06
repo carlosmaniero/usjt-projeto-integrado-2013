@@ -59,13 +59,16 @@ public class ConsultarVoo extends JFrame
    private void criarElementos()
    {
       String[] titulo = new String[] {  
-            bundle.getString("ConsultarVoo.tabela.voo"),
+    			bundle.getString("CadastVoo.rotulo.rotuloCod"),
+            bundle.getString("ConsultarVoo.tabela.aviao"),
             bundle.getString("ConsultarVoo.tabela.partida"),
             bundle.getString("ConsultarVoo.tabela.destino"),
+				bundle.getString("CadastVoo.rotulo.rotuloEsca"),
             bundle.getString("ConsultarVoo.tabela.horario"),
-            bundle.getString("ConsultarVoo.tabela.aviao"), };
+				bundle.getString("CadastVoo.rotulo.rotuloSitu"),
+				 };
    	
-      String[][] voos = new String[voo.total()][5];
+      String[][] voos = new String[voo.total()][7];
         
       int i = 0;
       while (voo.proximo()) {

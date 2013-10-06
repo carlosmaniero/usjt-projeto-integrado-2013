@@ -68,6 +68,7 @@ public class CadastVoo extends JFrame
       criarElementos();
       configuraAcoes();
       setSize(400, 421);
+		voo = new Voo();
    }
 	
    private void configurar()
