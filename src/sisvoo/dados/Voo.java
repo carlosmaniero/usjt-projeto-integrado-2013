@@ -83,7 +83,7 @@ public class Voo
 			hora = rs.getString("hora");
          situacao = rs.getString("situacao");
 		} catch (SQLException e) {
-			// Não sei o que fazer :/
+			// Nï¿½o sei o que fazer :/
 		}
 	}
 	
@@ -111,6 +111,7 @@ public class Voo
 	{
 		this.codigo = codigo;
 	}
+	
 	
    // AERONAVE
    public String getAeronave()
