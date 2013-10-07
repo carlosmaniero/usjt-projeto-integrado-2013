@@ -6,6 +6,9 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 
 import javax.swing.BorderFactory;
@@ -18,6 +21,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import sisvoo.bibliotecas.Evento;
+import sisvoo.dados.Aeronave;
 import sisvoo.dados.Voo;
 
 public class CadastVoo extends JFrame
@@ -60,15 +64,17 @@ public class CadastVoo extends JFrame
    private ResourceBundle bundle;
    
    private Voo voo;
+   private Aeronave aeronave;
 	
    public CadastVoo(ResourceBundle bundle)
    {
       this.bundle = bundle;
+      voo = new Voo();
+      aeronave = new Aeronave();
       configurar();
       criarElementos();
       configuraAcoes();
       setSize(400, 421);
-		voo = new Voo();
    }
 	
    private void configurar()
@@ -132,8 +138,23 @@ public class CadastVoo extends JFrame
       rotuloHora.setHorizontalAlignment(SwingConstants.RIGHT);
       rotuloSitu.setHorizontalAlignment(SwingConstants.RIGHT);
    	
-      String[] sComboAero =
-         { "9ds7 - 14 Bis", "Boeing 747", "Azadelta" };
+      
+      String[] sComboAero = new String[0];
+      try {
+	      aeronave.selecionarTodos();
+	      sComboAero = new String[aeronave.total()];
+	      
+	      int i = 0;
+	      while(aeronave.proximo()){
+	      	sComboAero[i] = aeronave.getCodigo() + " - " + aeronave.getTipo();
+	      	i++;
+	      }
+      } catch (Exception e) {
+      	new MostrarErro(e);
+      }
+      
+      
+      
       comboAero = GUI.textoPadrao(new JComboBox(sComboAero));
    	
       String[] sComboOrig =
@@ -219,12 +240,18 @@ public class CadastVoo extends JFrame
                      return;
                   }
                
-                  if(campoHora.getText().length() < 3){
-                     new MostrarErro("O campo hora deve ser no formato '00:00'.");
-                     return;
-                  }
                   
-                  String cbAeronave = comboAero.getSelectedItem().toString();
+                  SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");  
+                  format.setLenient(false);   
+                  Date data =  null;
+                  
+                  try {  
+	                    data = (Date) format.parse(campoHora.getText());  
+                  } catch (ParseException e) {  
+	                    new MostrarErro("Digite uma data no formato dd/mm/yyyy hh:mm");
+	                    return;
+	                }  
+                  String cbAeronave = comboAero.getSelectedItem().toString().split(" - ")[0];
                   String cbOrigem = comboOrig.getSelectedItem().toString();
                   String cbDestino = comboDest.getSelectedItem().toString();
                   String cbSituacao = comboSitu.getSelectedItem().toString();
@@ -236,7 +263,7 @@ public class CadastVoo extends JFrame
                   voo.setOrigem(cbOrigem);
                   voo.setDestino(cbDestino);
                   voo.setEscala(campoEsca.getText());
-                  voo.setHora(campoHora.getText());
+                  voo.setHora(data);
                   voo.setSituacao(cbSituacao);
                
                   try {

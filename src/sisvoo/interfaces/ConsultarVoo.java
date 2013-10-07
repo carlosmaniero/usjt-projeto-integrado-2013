@@ -77,7 +77,7 @@ public class ConsultarVoo extends JFrame
          voos[i][2] = voo.getOrigem();
          voos[i][3] = voo.getDestino();
          voos[i][4] = voo.getEscala();
-         voos[i][5] = voo.getHora();
+         voos[i][5] = voo.getHora().toString();
          voos[i][6] = voo.getSituacao();
          
          i++;

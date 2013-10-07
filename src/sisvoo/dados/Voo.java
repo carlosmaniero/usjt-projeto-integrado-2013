@@ -2,6 +2,9 @@ package sisvoo.dados;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import sisvoo.bibliotecas.BancoDeDados;
 
@@ -13,31 +16,40 @@ public class Voo
 	private String origem;
 	private String destino;
 	private String escala;
-	private String hora;      
+	private Date hora;      
  	private String situacao;      
 	private BancoDeDados db;
 	private ResultSet rs;
 	
-	public static final String SQLCriacao = "CREATE  TABLE IF NOT EXISTS voo ("
-	    + "codigo VARCHAR(5) NOT NULL ,"
-	    + "aeronave VARCHAR(20) NOT NULL ,"
-	    + "origem VARCHAR(20) NOT NULL ,"       
-	    + "destino VARCHAR(20) NOT NULL ,"       
-	    + "escala VARCHAR(20) NOT NULL ,"                     
-	    + "hora VARCHAR(5) NOT NULL ,"              
-	    + "situacao VARCHAR(20) NOT NULL ,"       
-	    + "PRIMARY KEY (`codigo`) )" + " ENGINE = InnoDB";
+	public static final String SQLCriacao = "CREATE  TABLE IF NOT EXISTS `voo` (" +
+			"`codigo` VARCHAR(5) NOT NULL ," +
+			"`aeronave` VARCHAR(5) NOT NULL ," +
+			"`origem` VARCHAR(20) NOT NULL ," +
+			"`destino` VARCHAR(20) NOT NULL ," +
+			"`escala` VARCHAR(100) NOT NULL ," +
+			"`hora` DATETIME NOT NULL ," +
+			"`situacao` VARCHAR(45) NOT NULL ," +
+			"PRIMARY KEY (`codigo`) ," +
+			"INDEX `fk_voo_aeronave` (`aeronave` ASC) ," +
+			"CONSTRAINT `fk_voo_aeronave`" +
+			"FOREIGN KEY (`aeronave` ) " +
+			"REFERENCES `sisvoo`.`aeronave` (`codigo` ) " +
+			"ON DELETE NO ACTION " +
+			"ON UPDATE NO ACTION) " +
+			"ENGINE = InnoDB";
 	
 	public void criar() throws Exception
 	{
+		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		db.alterar("INSERT INTO voo VALUES ('" + codigo + "','" + aeronave + "','" + origem + "','" + destino + "','"
-			 + escala + "','" + hora + "','" + situacao + "')");
+			 + escala + "','" +  f.format(hora) + "','" + situacao + "')");
 	}
 	
 	public void altera() throws Exception
 	{
+		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		db.alterar("UPDATE voo SET aeronave='" + aeronave + "', origem='"
-			 + origem + "', destino='" + destino + "', escala='" + escala + "', hora='" + hora + "', situacao='" + situacao +
+			 + origem + "', destino='" + destino + "', escala='" + escala + "', hora='" + f.format(hora) + "', situacao='" + situacao +
 			 "' where codigo='" + codigo + "'");
 	}
 	
@@ -75,16 +87,24 @@ public class Voo
 	private void configuraCampos()
 	{
 		try {
-         codigo = rs.getString("codigo");
+			codigo = rs.getString("codigo");
 			aeronave = rs.getString("aeronave");
-         origem = rs.getString("origem");
+			origem = rs.getString("origem");
 			destino = rs.getString("destino");
-         escala = rs.getString("escala");
-			hora = rs.getString("hora");
-         situacao = rs.getString("situacao");
-		} catch (SQLException e) {
+			escala = rs.getString("escala");
+		
+			String tmpHora = rs.getString("hora");
+			SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			f.setLenient(false);
+			hora = (Date) f.parse(tmpHora);
+			
+			System.out.print(hora);
+			
+			situacao = rs.getString("situacao");
+		} catch (Exception e) {
 			// N�o sei o que fazer :/
-		}
+			e.printStackTrace();
+    }
 	}
 	
 	public int total()
@@ -95,7 +115,6 @@ public class Voo
 			numeroLinhas = rs.getRow();
 			rs.beforeFirst();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return numeroLinhas;
@@ -158,14 +177,14 @@ public class Voo
 	}
 	
    // HORA
-	public String getHora()
+	public Date getHora()
 	{
 		return hora;
 	}     
 
-	public void setHora(String hora)
+	public void setHora(Date data)
 	{
-		this.hora = hora;
+		this.hora = data;
 	}
   
    // SITUACAO

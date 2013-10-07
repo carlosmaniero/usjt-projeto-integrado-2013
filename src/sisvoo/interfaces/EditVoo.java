@@ -246,7 +246,7 @@ public class EditVoo extends JFrame
                   voo.setOrigem(comboOrig.getSelectedItem().toString());
                   voo.setDestino(comboDest.getSelectedItem().toString());
                   voo.setEscala(campoEsca.getText());
-                  voo.setHora(campoHora.getText());
+                  //voo.setHora();
                   voo.setSituacao(comboSitu.getSelectedItem().toString());
                
                   try {
