@@ -105,7 +105,7 @@ public class Administracao extends JFrame
 		painelVoos.add(cadastrarVoo);
 		painelVoos.add(consultarVoo);
 		painelVoos.add(removerVoo);
-		painelVoos.add(editarVoo);
+		//painelVoos.add(editarVoo);
 		
 		// AERONAVE
 		
@@ -165,7 +165,7 @@ public class Administracao extends JFrame
 		painelAeronave.add(cadastrarAeronave);
 		painelAeronave.add(consultarAeronave);
 		painelAeronave.add(removerAeronave);
-		painelAeronave.add(editarAeronave);
+		//painelAeronave.add(editarAeronave);
 		
 		add(painelVoos);
 		add(painelAeronave);

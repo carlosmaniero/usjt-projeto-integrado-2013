@@ -55,7 +55,7 @@ public class Voo
 	
 	public void remove() throws Exception
 	{
-		db.alterar("DELETE FROM aeronave WHERE codigo='" +  codigo + "'");
+		db.alterar("DELETE FROM voo WHERE codigo='" +  codigo + "'");
 	}
 	
 	public void selecionarTodos() throws Exception
