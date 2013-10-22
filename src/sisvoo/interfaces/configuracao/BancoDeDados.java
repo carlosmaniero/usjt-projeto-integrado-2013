@@ -19,6 +19,7 @@ import sisvoo.bibliotecas.ConfiguracoesBancoDeDados;
 import sisvoo.bibliotecas.Evento;
 import sisvoo.dados.Aeronave;
 import sisvoo.dados.Passageiro;
+import sisvoo.dados.Passagem;
 import sisvoo.dados.Voo;
 
 import sisvoo.interfaces.GUI;
@@ -141,7 +142,7 @@ public class BancoDeDados extends JFrame
 		db.alterar(Aeronave.SQLCriacao);
 		db.alterar(Voo.SQLCriacao);
 		db.alterar(Passageiro.SQLCriacao);
-		
+		db.alterar(Passagem.SQLCriacao);
 	}
 
 	

@@ -22,7 +22,7 @@ public class Passageiro
 	private BancoDeDados db;
 	private ResultSet rs;
 	
-	public static final String SQLCriacao = "create table passageiro (codigo int auto_increment not null, tratamento varchar(500) not null, nome varchar(200) not null, tipo varchar(20) not null, data_nascimento varchar(20), email varchar(150), celular varchar(13), primary key(codigo)) ENGINE = InnoDB";
+	public static final String SQLCriacao = "CREATE TABLE IF NOT EXISTS passageiro (codigo int auto_increment not null, tratamento varchar(500) not null, nome varchar(200) not null, tipo varchar(20) not null, data_nascimento varchar(20), email varchar(150), celular varchar(13), primary key(codigo)) ENGINE = InnoDB";
 	
 	public void criar() throws Exception
 	{

@@ -3,6 +3,8 @@ package sisvoo.dados;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.mysql.jdbc.Statement;
+
 import sisvoo.bibliotecas.BancoDeDados;
 
 public class Passagem
@@ -17,18 +19,22 @@ public class Passagem
 	private BancoDeDados db;
 	private ResultSet rs;
 	
-	public static final String SQLCriacao = "CREATE  TABLE passagem (" +
+	public static final String SQLCriacao = "CREATE TABLE IF NOT EXISTS passagem (" +
 			"codigo INT NOT NULL AUTO_INCREMENT ," +
 			"destino VARCHAR(7) NOT NULL," +
 			"retorno VARCHAR(7) NULL ," +
 			"adulto INT NOT NULL DEFAULT 0 ," +
-			"crianca` INT NULL DEFAULT 0 , " +
+			"crianca INT NULL DEFAULT 0 , " +
 			"bebe VARCHAR(45) NULL DEFAULT 0 , " +
-			"PRIMARY KEY (`codigo`) )";
+			"PRIMARY KEY (codigo) )";
 	
 	public void criar() throws Exception
 	{
-		db.alterar("INSERT INTO passagem VALUES (NULL,'" + destino+ "','" + retorno + "'," + adulto + "," + crianca + "," + bebe + ")");
+		Statement stmt = db.alterar("INSERT INTO passagem VALUES (NULL,'" + destino+ "','" + retorno + "'," + adulto + "," + crianca + "," + bebe + ")");
+		ResultSet rs = stmt.getGeneratedKeys();
+		if (rs.next()){
+		    codigo=rs.getInt(1);
+		}
 	}
 	
 	

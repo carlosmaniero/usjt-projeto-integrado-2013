@@ -50,6 +50,7 @@ public class Pagamento extends JFrame
 		criarElementos();
 		configurar();
 		setSize(450, 351);
+		events();
 	}
 	
 	private void configurar()

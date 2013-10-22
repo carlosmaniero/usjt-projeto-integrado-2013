@@ -1,7 +1,8 @@
 package sisvoo.interfaces;
 
-import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ResourceBundle;
 
 import javax.swing.JButton;
@@ -11,6 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
+import sisvoo.dados.Passagem;
+
 public class EscolherAssento extends JFrame
 {
 	
@@ -18,16 +21,22 @@ public class EscolherAssento extends JFrame
 	private int numeroDeFileiras = 4;
 	private int numeroDeLinhas = 10;
 	private JPanel painelAssentos;
-	private JTextField[] posicao = new JTextField[10];
+	private JTextField[] posicao;
 	private ResourceBundle bundle;
+	private Passagem passagem;
 	
-	public EscolherAssento(ResourceBundle bundle)
+	public EscolherAssento(ResourceBundle bundle, Passagem passagem)
 	{
+		this.passagem= passagem;
 		this.bundle = bundle;
+		
+		posicao = new JTextField[passagem.getAdulto() + passagem.getCrianca() + passagem.getBebe()];
+		
 		configurar();
 		criarElementos();
 		criarAviao();
 		setSize(800, 351);
+		
 	}
 	
 	private void configurar()
@@ -54,6 +63,7 @@ public class EscolherAssento extends JFrame
 			rotuloPosicao[i] = new JLabel(
 			    bundle.getString("EscolherAssento.rotulo.rotuloPosicao"));
 			posicao[i] = new JTextField();
+			posicao[i].setEditable(false);
 			
 			painel.add(rotuloPosicao[i]);
 			painel.add(GUI.textoPadrao(posicao[i]));
@@ -77,6 +87,30 @@ public class EscolherAssento extends JFrame
 		int rows = numeroDeFileiras;
 		int cols = numeroDeLinhas;
 		painelAssentos = new JPanel(new GridLayout(rows, cols, 2, 2));
+		
+		ActionListener escolherAssento = new ActionListener()
+		{
+			
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				JButton botao = (JButton) e.getSource();
+				
+				for (int i = 0; i < posicao.length; i++)
+				{
+					if(posicao[i].getText().length() == 0){
+						posicao[i].setText(botao.getText());
+						
+						botao.setEnabled(false);
+						botao = GUI.botaoVermelho(botao);
+						
+						return;
+					}
+				}
+				
+			}
+		};
+		
 		for (int i = 1; i <= rows * cols; i++)
 		{
 			JButton botao = GUI.botaoAzul(new JButton("" + i));
@@ -84,6 +118,8 @@ public class EscolherAssento extends JFrame
 			{
 				botao.setEnabled(false);
 				botao = GUI.botaoVermelho(botao);
+			}else{
+				botao.addActionListener(escolherAssento);
 			}
 			
 			painelAssentos.add(botao);

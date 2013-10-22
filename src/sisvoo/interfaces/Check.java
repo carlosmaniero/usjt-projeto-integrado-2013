@@ -13,6 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import sisvoo.dados.Passagem;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ResourceBundle;
@@ -85,7 +87,17 @@ public class Check extends JFrame
 			
 			public void actionPerformed(ActionEvent e)
 			{
-				new EscolherAssento(bundle);
+				Passagem passagem = new Passagem();
+				passagem.setCodigo(Integer.parseInt(campoBilhete.getText()));
+				try {
+	        passagem.selectionar();
+        } catch (Exception e1) {
+	        e1.printStackTrace();
+	        new MostrarErro(e1);
+	        return;
+        }
+				new EscolherAssento(bundle, passagem);
+				dispose();
 			}
 		});
 		

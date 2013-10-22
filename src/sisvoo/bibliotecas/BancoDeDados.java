@@ -111,7 +111,7 @@ public class BancoDeDados
 		return rs;
 	}
 	
-	public void alterar(String query) throws Exception
+	public Statement alterar(String query) throws Exception
 	{
 		Statement st = null;
 		try {
@@ -124,7 +124,8 @@ public class BancoDeDados
 		System.out.println("Executando: " + query);
 		
     try {
-	    st.executeUpdate(query);
+	    st.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+	    return st;
     } catch (SQLException e) {
 	    throw(new Exception("Ops! Erro na consulta <br>NerdInfo: " + query));
     }
