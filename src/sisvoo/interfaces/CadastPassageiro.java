@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ResourceBundle;
 
 import javax.swing.BorderFactory;
@@ -16,6 +18,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import sisvoo.bibliotecas.Evento;
+import sisvoo.bibliotecas.FormatarData;
 import sisvoo.dados.Passageiro;
 
 public class CadastPassageiro extends JFrame
@@ -61,6 +65,7 @@ public class CadastPassageiro extends JFrame
 	
 	private JComboBox tipoPass;
 	private JComboBox tipoTrat;
+	
 	ResourceBundle bundle;
 	
 	public CadastPassageiro(ResourceBundle bundle)
@@ -69,6 +74,8 @@ public class CadastPassageiro extends JFrame
 		configurar();
 		criarElementos();
 		setSize(400, 421);
+		configuraAcoes();
+
 	}
 	
 	private void configurar()
@@ -126,16 +133,12 @@ public class CadastPassageiro extends JFrame
 		rotuloCel = new JLabel(
 		    bundle.getString("CadastPassageiro.rotulo.rotuloCel"));
 		
-		campoCod = GUI.textoPadrao(new JTextField(" ", 20));
-		;
-		campoNome = GUI.textoPadrao(new JTextField(" ", 20));
-		;
-		campoNasc = GUI.textoPadrao(new JTextField(" ", 20));
-		;
-		campoEmail = GUI.textoPadrao(new JTextField(" ", 20));
-		;
-		campoCel = GUI.textoPadrao(new JTextField(" ", 20));
-		;
+		campoCod = GUI.textoPadrao(new JTextField("", 20));
+		campoNome = GUI.textoPadrao(new JTextField("", 20));
+		campoNasc = GUI.textoPadrao(new JTextField("", 20));
+		campoEmail = GUI.textoPadrao(new JTextField("", 20));
+		campoCel = GUI.textoPadrao(new JTextField("", 20));
+		
 		
 		rotuloCod.setHorizontalAlignment(SwingConstants.RIGHT);
 		rotuloTrat.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -161,6 +164,8 @@ public class CadastPassageiro extends JFrame
 		campoNasc.setHorizontalAlignment(SwingConstants.LEFT);
 		campoEmail.setHorizontalAlignment(SwingConstants.LEFT);
 		campoCel.setHorizontalAlignment(SwingConstants.LEFT);
+		
+		campoCod.setEditable(false);
 		
 		painelCod.setBorder(BorderFactory.createEmptyBorder(0, 0, 5, 0));
 		painelTrat.setBorder(BorderFactory.createEmptyBorder(0, 0, 5, 169));
@@ -213,37 +218,39 @@ public class CadastPassageiro extends JFrame
 
 	private void configuraAcoes()
 	{
-		botaoOk.addActionListener(new ActionListener()
+		botaoOK.addActionListener(new ActionListener()
 		{
 			
 			@Override
-			public void actionPerformed(ActionEvent arg0)
+			public void actionPerformed(ActionEvent evt)
 			{
-				try{
-					aeronave.setBancos(Integer.parseInt(campoBancos.getText()));
-					aeronave.setFileiras(Integer.parseInt(campoFileiras.getText()));
-				}catch(Exception e){
-					new MostrarErro("Bancos e fileiras devem ser do tipo numérico.");
+				
+				if(campoNome.getText().length() < 7){
+					new MostrarErro("Nome inválido");
 					return;
 				}
 				
-				if(campoCodigo.getText().length() != 5){
-					new MostrarErro("Digite um código com 5 caracteres.");
+				if(campoNasc.getText().length() != 10){
+					new MostrarErro("Data inválida. EX: 'DD/MM/AAAA'");
 					return;
 				}
 				
-				if(campoTipo.getText().length() < 3){
-					new MostrarErro("O tipo da aeronave deve conter no mínimo 3 caracteres.");
-					return;
+				if(campoEmail.getText().length() < 10){
+					new MostrarErro("Email inválido");
+				  return;
 				}
-				
-				aeronave.setCodigo(campoCodigo.getText());
-				aeronave.setTipo(campoTipo.getText());
-				
+											
+				Passageiro passageiro = new Passageiro();
+				passageiro.setDataNascimento(FormatarData.paraMysql(campoNasc.getText()));
+				passageiro.setEmail(campoEmail.getText());
+				passageiro.setNome(campoNome.getText());
+				passageiro.setTipo((String) tipoPass.getSelectedItem());
+				passageiro.setCelular(campoCel.getText());
+				passageiro.setTratamento((String) tipoTrat.getSelectedItem());
 				try {
-	        aeronave.criar();
+	        passageiro.criar();
 	        
-	        new MostrarSucesso("Aeronave criada com sucesso!", new Evento()
+	        new MostrarSucesso("Passageiro cadastrado com sucesso", new Evento()
 					{
 						
 						@Override
@@ -253,12 +260,21 @@ public class CadastPassageiro extends JFrame
 						}
 					});
         } catch (Exception e) {
-	        new MostrarErro(e);
+        		new MostrarErro(e);
         }
 				
-				
+			}
+			
+		});
+		
+		botaoCancel.addActionListener(new ActionListener()
+		{
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0)
+			{
+				dispose();
 			}
 		});
-	}
-
+	}	
 }

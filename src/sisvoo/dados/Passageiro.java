@@ -22,26 +22,21 @@ public class Passageiro
 	private BancoDeDados db;
 	private ResultSet rs;
 	
-	public static final String SQLCriacao = "create table passageiro (codigo int auto_increment not null, tratamento varchar(5) not null, nome varchar(200) not null, tipo varchar(20) not null, data_nascimento varchar(20), email varchar(150), celular varchar(13), primary key(codigo)) ENGINE = InnoDB";
+	public static final String SQLCriacao = "create table passageiro (codigo int auto_increment not null, tratamento varchar(500) not null, nome varchar(200) not null, tipo varchar(20) not null, data_nascimento varchar(20), email varchar(150), celular varchar(13), primary key(codigo)) ENGINE = InnoDB";
 	
 	public void criar() throws Exception
 	{
-		db.alterar("INSERT INTO passageiro VALUES (" + codigo + ", '" + tratamento + "','" + nome + "','" + tipo + "','" + dataNascimento + "','" + email + "','" + celular + "')");
+		db.alterar("INSERT INTO passageiro VALUES (NULL, '" + tratamento + "','" + nome + "','" + tipo + "','" + dataNascimento + "','" + email + "','" + celular + "')");
 	}
 	
 	public void altera() throws Exception
 	{
-		/*
-		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		db.alterar("UPDATE voo SET aeronave='" + aeronave + "', origem='"
-			 + origem + "', destino='" + destino + "', escala='" + escala + "', hora='" + f.format(hora) + "', situacao='" + situacao +
-			 "' where codigo='" + codigo + "'");
-			 */
+		db.alterar("UPDATE passageiro SET tratamento='"+ tratamento + "', nome='" + nome + "', tipo='" + tipo + "', dataNascimento='" + dataNascimento + "', email='" + email + "', celular='" + celular + "' where codigo='" + codigo + "'");
 	}
 	
 	public void remove() throws Exception
 	{
-		db.alterar("DELETE FROM voo WHERE codigo='" +  codigo + "'");
+		db.alterar("DELETE FROM passageiro WHERE codigo='" +  codigo + "'");
 	}
 	
 	public void selecionarTodos() throws Exception
@@ -107,44 +102,44 @@ public class Passageiro
 	public int getCodigo(){
 		return codigo;
 	}
-	private String getTratamento(){
+	public String getTratamento(){
 		return tratamento;
 	}
-	private String getNome(){
+	public String getNome(){
 		return nome;
 	}
-	private String getTipo(){
+	public String getTipo(){
 		return tipo;
 	}
-	private String getDataNascimento(){
+	public String getDataNascimento(){
 		return dataNascimento;
 	}
-	private String getEmail(){
+	public String getEmail(){
 		return email;
 	}
-	private String getCelular(){
+	public String getCelular(){
 		return celular;
 	}
 	
-	private void setCodigo(int value){
+	public void setCodigo(int value){
 		codigo = value;
 	}
-	private void setTratamento(String value){
+	public void setTratamento(String value){
 		tratamento = value;
 	}
-	private void setNome(String value){
+	public void setNome(String value){
 		nome = value;
 	}
-	private void setTipo(String value){
+	public void setTipo(String value){
 		tipo = value;
 	}
-	private void setDataNascimento(String value){
+	public void setDataNascimento(String value){
 		dataNascimento = value;
 	}
-	private void setEmail(String value){
+	public void setEmail(String value){
 		email = value;
 	}
-	private void setCelular(String value){
+	public void setCelular(String value){
 		celular = value;
 	}
 }
