@@ -183,5 +183,13 @@ public class Passagem
 	{
 		this.db = new BancoDeDados();
 	}
+
+
+
+
+	public int getCodigo()
+  {
+	  return codigo;
+  }
 	
 }

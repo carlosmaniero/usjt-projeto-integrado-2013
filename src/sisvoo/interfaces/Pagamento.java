@@ -7,10 +7,14 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
+import sisvoo.bibliotecas.Evento;
+import sisvoo.dados.CartaoDeCredito;
 import sisvoo.dados.Passagem;
 
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ResourceBundle;
 
 public class Pagamento extends JFrame
@@ -143,6 +147,37 @@ public class Pagamento extends JFrame
 		    bundle.getString("Pagamento.painel.abaCheque"));
 		
 		add(painelAbas);
+	}
+	
+	public void events(){
+		botaoCartao.addActionListener(new ActionListener()
+		{
+			
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				if(CartaoDeCredito.validar(
+							bandeira.getText(), 
+							titular.getText(), 
+							cpf.getText(), 
+							cartao.getText(), 
+							digito.getText(), 
+							validade.getText()
+						)){
+					new MostrarSucesso("Parabén! Você efetuou a compra com sucesso! o numero do seu bilhete é: " + pass.getCodigo(), new Evento()
+					{
+						
+						@Override
+						public void executar()
+						{
+							dispose();
+						}
+					});
+				}else{
+					new MostrarErro("Compra não autorizada");
+				}
+			}
+		});
 	}
 	
 }
