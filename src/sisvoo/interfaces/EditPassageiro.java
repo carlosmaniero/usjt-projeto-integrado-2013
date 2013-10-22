@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ResourceBundle;
 
 import javax.swing.BorderFactory;
@@ -15,6 +17,10 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import sisvoo.bibliotecas.Evento;
+import sisvoo.bibliotecas.FormatarData;
+import sisvoo.dados.Passageiro;
 
 public class EditPassageiro extends JFrame
 {
@@ -40,6 +46,8 @@ public class EditPassageiro extends JFrame
 	private JTextField campoNasc;
 	private JTextField campoEmail;
 	private JTextField campoCel;
+	private JTextField campoTrat;
+	private JTextField campoTipo;
 	
 	private JPanel painelTitulo;
 	
@@ -57,16 +65,28 @@ public class EditPassageiro extends JFrame
 	private JButton botaoOK;
 	private JButton botaoCancel;
 	
-	private JComboBox tipoPass;
-	private JComboBox tipoTrat;
+	//private JComboBox tipoPass;
+	//private JComboBox tipoTrat;
 	ResourceBundle bundle;
+	private Passageiro passageiro;
 	
-	public EditPassageiro(ResourceBundle bundle)
+	public EditPassageiro(ResourceBundle bundle, String codigo)
 	{
+		passageiro = new Passageiro();
+		passageiro.setCodigo(Integer.parseInt(codigo));
+		
+		try {
+			passageiro.selectionar();
+		} catch (Exception e) {
+			new MostrarErro(e);
+		}
+		
 		this.bundle = bundle;
 		configurar();
 		criarElementos();
 		setSize(400, 421);
+		configuraAcoes();
+		configuraCampos();
 	}
 	
 	private void configurar()
@@ -122,16 +142,14 @@ public class EditPassageiro extends JFrame
 		    bundle.getString("EditPassageiro.rotulo.rotuloEmail"));
 		rotuloCel = new JLabel(bundle.getString("EditPassageiro.rotulo.rotuloCel"));
 		
-		campoCod = GUI.textoPadrao(new JTextField(" ", 20));
-		;
-		campoNome = GUI.textoPadrao(new JTextField(" ", 20));
-		;
-		campoNasc = GUI.textoPadrao(new JTextField(" ", 20));
-		;
-		campoEmail = GUI.textoPadrao(new JTextField(" ", 20));
-		;
-		campoCel = GUI.textoPadrao(new JTextField(" ", 20));
-		;
+		campoCod = GUI.textoPadrao(new JTextField("", 20));		
+		campoNome = GUI.textoPadrao(new JTextField("", 20));
+		campoNasc = GUI.textoPadrao(new JTextField("", 20));		
+		campoEmail = GUI.textoPadrao(new JTextField("", 20));
+		campoCel = GUI.textoPadrao(new JTextField("", 20));
+		campoTrat = GUI.textoPadrao(new JTextField("", 20));
+		campoTipo = GUI.textoPadrao(new JTextField("", 20));
+		
 		
 		rotuloCod.setHorizontalAlignment(SwingConstants.RIGHT);
 		rotuloTrat.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -140,28 +158,19 @@ public class EditPassageiro extends JFrame
 		rotuloNasc.setHorizontalAlignment(SwingConstants.RIGHT);
 		rotuloEmail.setHorizontalAlignment(SwingConstants.RIGHT);
 		rotuloCel.setHorizontalAlignment(SwingConstants.RIGHT);
-		
-		String[] sTipoPass =
-		{ bundle.getString("EditPassageiro.combo.adulto"),
-		    bundle.getString("EditPassageiro.combo.crianca"),
-		    bundle.getString("EditPassageiro.combo.idoso") };
-		tipoPass = GUI.textoPadrao(new JComboBox(sTipoPass));
-		
-		String[] sTipoTrat =
-		{ bundle.getString("EditPassageiro.combo.Sr"),
-		    bundle.getString("EditPassageiro.combo.Sra") };
-		tipoTrat = GUI.textoPadrao(new JComboBox(sTipoTrat));
-		
+
 		campoCod.setHorizontalAlignment(SwingConstants.LEFT);
 		campoNome.setHorizontalAlignment(SwingConstants.LEFT);
 		campoNasc.setHorizontalAlignment(SwingConstants.LEFT);
 		campoEmail.setHorizontalAlignment(SwingConstants.LEFT);
 		campoCel.setHorizontalAlignment(SwingConstants.LEFT);
+		campoTipo.setEnabled(false);
+		campoTrat.setEnabled(false);
 		
 		painelCod.setBorder(BorderFactory.createEmptyBorder(0, 0, 5, 0));
-		painelTrat.setBorder(BorderFactory.createEmptyBorder(0, 0, 5, 169));
+		painelTrat.setBorder(BorderFactory.createEmptyBorder(0, 0, 5, 0));
 		painelNome.setBorder(BorderFactory.createEmptyBorder(0, 0, 5, 0));
-		painelTipo.setBorder(BorderFactory.createEmptyBorder(0, 0, 5, 148));
+		painelTipo.setBorder(BorderFactory.createEmptyBorder(0, 0, 5, 0));
 		painelNasc.setBorder(BorderFactory.createEmptyBorder(0, 0, 5, 0));
 		painelEmail.setBorder(BorderFactory.createEmptyBorder(0, 0, 5, 0));
 		painelCel.setBorder(BorderFactory.createEmptyBorder(0, 0, 5, 0));
@@ -169,11 +178,11 @@ public class EditPassageiro extends JFrame
 		painelCod.add(rotuloCod, BorderLayout.WEST);
 		painelCod.add(campoCod, BorderLayout.EAST);
 		painelTrat.add(rotuloTrat, BorderLayout.WEST);
-		painelTrat.add(tipoTrat, BorderLayout.EAST);
+		painelTrat.add(campoTrat, BorderLayout.EAST);
 		painelNome.add(rotuloNome, BorderLayout.WEST);
 		painelNome.add(campoNome, BorderLayout.EAST);
 		painelTipo.add(rotuloTipo, BorderLayout.WEST);
-		painelTipo.add(tipoPass, BorderLayout.EAST);
+		painelTipo.add(campoTipo, BorderLayout.EAST);
 		painelNasc.add(rotuloNasc, BorderLayout.WEST);
 		painelNasc.add(campoNasc, BorderLayout.EAST);
 		painelEmail.add(rotuloEmail, BorderLayout.WEST);
@@ -206,5 +215,81 @@ public class EditPassageiro extends JFrame
 		add(painelBotoes, BorderLayout.SOUTH);
 		
 	}
+	
+	private void configuraCampos(){
+		
+		campoCod.setEnabled(false);
+		campoCod.setText("" + passageiro.getCodigo());
+		campoNome.setText(passageiro.getNome());
+		campoNasc.setText(passageiro.getDataNascimento());
+		campoEmail.setText(passageiro.getEmail());
+		campoCel.setText(passageiro.getCelular());
+		campoTrat.setText(passageiro.getTratamento());
+		campoTipo.setText(passageiro.getTipo());    
+	}
+	
+	private void configuraAcoes()
+	{
+		botaoOK.addActionListener(new ActionListener()
+		{
+			
+			@Override
+			public void actionPerformed(ActionEvent evt)
+			{
+				
+				if(campoNome.getText().length() < 7){
+					new MostrarErro("Nome inválido");
+					return;
+				}
+				
+				if(campoNasc.getText().length() != 10){
+					new MostrarErro("Data inválida. EX: 'DD/MM/AAAA'");
+					return;
+				}
+				
+				if(campoEmail.getText().length() < 10){
+					new MostrarErro("Email inválido");
+				  return;
+				}
+											
+				passageiro.setDataNascimento(campoNasc.getText());
+				passageiro.setEmail(campoEmail.getText());
+				passageiro.setNome(campoNome.getText());
+				passageiro.setTipo(campoTipo.getText());
+				passageiro.setCelular(campoCel.getText());
+				passageiro.setTratamento(campoTrat.getText());
+				
+				try {
+	        passageiro.altera();
+	        
+	        new MostrarSucesso("Editado com sucesso", new Evento()
+					{
+						
+						@Override
+						public void executar()
+						{
+							dispose();
+							new ConsultarPassageiro(bundle);
+						}
+					});
+        } catch (Exception e) {
+        		new MostrarErro(e);
+        }
+				
+			}
+			
+		});
+		
+		botaoCancel.addActionListener(new ActionListener()
+		{
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0)
+			{
+				dispose();
+				new ConsultarPassageiro(bundle);
+			}
+		});
+	}	
 	
 }

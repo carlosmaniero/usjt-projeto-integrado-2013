@@ -151,9 +151,7 @@ public class Inicial extends JFrame
 			
 			public void actionPerformed(ActionEvent e)
 			{
-				JOptionPane.showInputDialog(bundle
-				    .getString("Inicial.JOptionPane.editar"));
-				new EditPassageiro(bundle);
+				new ConsultarPassageiro(bundle);
 			}
 		});
 		comprarPassagem = GUI.botaoAzul(new JButton(bundle

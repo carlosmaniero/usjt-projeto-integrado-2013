@@ -31,7 +31,7 @@ public class Passageiro
 	
 	public void altera() throws Exception
 	{
-		db.alterar("UPDATE passageiro SET tratamento='"+ tratamento + "', nome='" + nome + "', tipo='" + tipo + "', dataNascimento='" + dataNascimento + "', email='" + email + "', celular='" + celular + "' where codigo='" + codigo + "'");
+		db.alterar("UPDATE passageiro SET tratamento='"+ tratamento + "', nome='" + nome + "', tipo='" + tipo + "', data_nascimento='" + dataNascimento + "', email='" + email + "', celular='" + celular + "' where codigo='" + codigo + "'");
 	}
 	
 	public void remove() throws Exception
