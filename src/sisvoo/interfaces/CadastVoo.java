@@ -22,6 +22,7 @@ import javax.swing.SwingConstants;
 
 import sisvoo.bibliotecas.Evento;
 import sisvoo.dados.Aeronave;
+import sisvoo.dados.Aeroportos;
 import sisvoo.dados.Voo;
 
 public class CadastVoo extends JFrame
@@ -105,13 +106,13 @@ public class CadastVoo extends JFrame
    	// Paineis
       painelFormulario = new JPanel(new GridLayout(7, 1));
    	
-      painelCod = new JPanel(new BorderLayout());
-      painelAero = new JPanel(new BorderLayout());
-      painelOrig = new JPanel(new BorderLayout());
-      painelDest = new JPanel(new BorderLayout());
-      painelEsca = new JPanel(new BorderLayout());
-      painelHora = new JPanel(new BorderLayout());
-      painelSitu = new JPanel(new BorderLayout());
+      painelCod = new JPanel(new GridLayout(1,2));
+      painelAero = new JPanel(new GridLayout(1,2));
+      painelOrig = new JPanel(new GridLayout(1,2));
+      painelDest = new JPanel(new GridLayout(1,2));
+      painelEsca = new JPanel(new GridLayout(1,2));
+      painelHora = new JPanel(new GridLayout(1,2));
+      painelSitu = new JPanel(new GridLayout(1,2));
    	
       painelFormulario.setBorder(BorderFactory.createEmptyBorder(10, 10, 0, 10));
    	
@@ -130,13 +131,13 @@ public class CadastVoo extends JFrame
       campoHora = GUI.textoPadrao(new JTextField(20));
       ;
    	
-      rotuloCod.setHorizontalAlignment(SwingConstants.RIGHT);
-      rotuloAero.setHorizontalAlignment(SwingConstants.RIGHT);
-      rotuloOrig.setHorizontalAlignment(SwingConstants.RIGHT);
-      rotuloDest.setHorizontalAlignment(SwingConstants.RIGHT);
-      rotuloEsca.setHorizontalAlignment(SwingConstants.RIGHT);
-      rotuloHora.setHorizontalAlignment(SwingConstants.RIGHT);
-      rotuloSitu.setHorizontalAlignment(SwingConstants.RIGHT);
+//      rotuloCod.setHorizontalAlignment(SwingConstants.RIGHT);
+//      rotuloAero.setHorizontalAlignment(SwingConstants.RIGHT);
+//      rotuloOrig.setHorizontalAlignment(SwingConstants.RIGHT);
+//      rotuloDest.setHorizontalAlignment(SwingConstants.RIGHT);
+//      rotuloEsca.setHorizontalAlignment(SwingConstants.RIGHT);
+//      rotuloHora.setHorizontalAlignment(SwingConstants.RIGHT);
+//      rotuloSitu.setHorizontalAlignment(SwingConstants.RIGHT);
    	
       
       String[] sComboAero = new String[0];
@@ -158,7 +159,7 @@ public class CadastVoo extends JFrame
       comboAero = GUI.textoPadrao(new JComboBox(sComboAero));
    	
       String[] sComboOrig =
-         { "Congonhas", "Guarulhos" };
+         Aeroportos.get();
       comboOrig = GUI.textoPadrao(new JComboBox(sComboOrig));
    	
       String[] sComboDest =
@@ -182,20 +183,20 @@ public class CadastVoo extends JFrame
       painelHora.setBorder(BorderFactory.createEmptyBorder(0, 0, 5, 0));
       painelSitu.setBorder(BorderFactory.createEmptyBorder(0, 0, 5, 126));
    	
-      painelCod.add(rotuloCod, BorderLayout.WEST);
-      painelCod.add(campoCod, BorderLayout.EAST);
-      painelAero.add(rotuloAero, BorderLayout.WEST);
-      painelAero.add(comboAero, BorderLayout.EAST);
-      painelOrig.add(rotuloOrig, BorderLayout.WEST);
-      painelOrig.add(comboOrig, BorderLayout.EAST);
-      painelDest.add(rotuloDest, BorderLayout.WEST);
-      painelDest.add(comboDest, BorderLayout.EAST);
-      painelEsca.add(rotuloEsca, BorderLayout.WEST);
-      painelEsca.add(campoEsca, BorderLayout.EAST);
-      painelHora.add(rotuloHora, BorderLayout.WEST);
-      painelHora.add(campoHora, BorderLayout.EAST);
-      painelSitu.add(rotuloSitu, BorderLayout.WEST);
-      painelSitu.add(comboSitu, BorderLayout.EAST);
+      painelCod.add(rotuloCod);
+      painelCod.add(campoCod);
+      painelAero.add(rotuloAero);
+      painelAero.add(comboAero);
+      painelOrig.add(rotuloOrig);
+      painelOrig.add(comboOrig);
+      painelDest.add(rotuloDest);
+      painelDest.add(comboDest);
+      painelEsca.add(rotuloEsca);
+      painelEsca.add(campoEsca);
+      painelHora.add(rotuloHora);
+      painelHora.add(campoHora);
+      painelSitu.add(rotuloSitu);
+      painelSitu.add(comboSitu);
    	
       painelFormulario.add(painelCod);
       painelFormulario.add(painelAero);

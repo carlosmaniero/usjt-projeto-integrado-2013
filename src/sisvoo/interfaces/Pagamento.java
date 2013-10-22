@@ -6,6 +6,9 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+
+import sisvoo.dados.Passagem;
+
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.util.ResourceBundle;
@@ -34,9 +37,12 @@ public class Pagamento extends JFrame
 	
 	private ResourceBundle bundle;
 	
-	public Pagamento(ResourceBundle bundle)
+	private Passagem pass;
+	
+	public Pagamento(ResourceBundle bundle, Passagem pass)
 	{
 		this.bundle = bundle;
+		this.pass = pass;
 		criarElementos();
 		configurar();
 		setSize(450, 351);

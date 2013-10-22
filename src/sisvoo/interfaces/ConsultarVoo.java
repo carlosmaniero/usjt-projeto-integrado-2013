@@ -19,6 +19,8 @@ public class ConsultarVoo extends JFrame
 	
    private ResourceBundle bundle;
    private Voo voo;
+   private Evento click;
+   private JTable tabela;
    
    public ConsultarVoo(ResourceBundle bundle)
    {
@@ -83,7 +85,7 @@ public class ConsultarVoo extends JFrame
          i++;
        }
       
-      final JTable tabela = new JTable(new DefaultTableModel(voos, titulo));
+       tabela = new JTable(new DefaultTableModel(voos, titulo));
    	tabela.setDragEnabled(false);
 		
 		tabela.getSelectionModel().addListSelectionListener(
@@ -92,14 +94,31 @@ public class ConsultarVoo extends JFrame
 			    @Override
 			    public void valueChanged(ListSelectionEvent event)
 			    {
-			    	if(event.getValueIsAdjusting())
-			    		new EditVoo(bundle, tabela.getValueAt(tabela.getSelectedRow(), 0).toString());
+			    	if(event.getValueIsAdjusting()){
+			    		if(click == null)
+			    			new EditVoo(bundle, getCodigoSelecionado());
+			    		else
+			    			click.executar();
+			    	}
+			    		
+			    		
 			    	dispose();
 			    }
+
 		    });
       
       add(new JScrollPane(tabela));
    	
    }
+   
+   public String getCodigoSelecionado()
+   {
+			return tabela.getValueAt(tabela.getSelectedRow(), 0).toString();
+   }
+
+	public void setClick(Evento evento)
+  {
+	  click = evento;
+  }
 	
 }

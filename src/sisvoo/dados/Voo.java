@@ -72,6 +72,10 @@ public class Voo
 		configuraCampos();
 	}
 	
+	public void selectionarPorDestino(int aeroporto){
+		//rs = db.selectAll("voo", "");
+	}
+	
 	public boolean proximo()
 	{
 		try {
