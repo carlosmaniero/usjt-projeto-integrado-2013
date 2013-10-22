@@ -41,6 +41,7 @@ public class Inicial extends JFrame
 	private JButton cadastrarPassageiro;
 	private JButton consultarPassageiro;
 	private JButton alterarPassageiro;
+	private JButton excluirPassageiro;
 	private JButton comprarPassagem;
 	private JButton cancelarPassagem;
 	private JButton transferirPassagem;
@@ -154,6 +155,21 @@ public class Inicial extends JFrame
 				new ConsultarPassageiro(bundle);
 			}
 		});
+		
+		excluirPassageiro = GUI.botaoAzul(new JButton(bundle
+		    .getString("Administracao.botao.removerAeronave")));
+		excluirPassageiro.setIcon(GUI.icone("remover"));
+		excluirPassageiro.addActionListener(new ActionListener()
+		{
+			
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				new CancelPassageiro(bundle);				
+			}
+		});
+		
+		//Painel Passagem
 		comprarPassagem = GUI.botaoAzul(new JButton(bundle
 		    .getString("Inicial.botao.comprarPassagem")));
 		comprarPassagem.addActionListener(new ActionListener()
@@ -223,6 +239,7 @@ public class Inicial extends JFrame
 		painelPassageiros.add(cadastrarPassageiro);
 		// painelPassageiros.add(consultarPassageiro);
 		painelPassageiros.add(alterarPassageiro);
+		painelPassageiros.add(excluirPassageiro);
 		painelPassageiros.add(new JLabel()); // Elemento vazio
 		
 		painelPassagens = new JPanel(new GridLayout(1, 4, 5, 10));
